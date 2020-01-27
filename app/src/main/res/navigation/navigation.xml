@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="livroandroid.com.consultacep.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/action_startFragment_to_cepFragment"
+            app:destination="@id/cepFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cepFragment"
+        android:name="livroandroid.com.consultacep.cep.CepFragment"
+        android:label="fragment_cep"
+        tools:layout="@layout/fragment_cep" />
+
+</navigation>

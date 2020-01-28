@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cep.CepFragment">
+    tools:context=".cep.ui.CepFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_text"
@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_cep_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Cep"
@@ -24,7 +25,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btn_pesquisar"
+        android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -43,7 +44,7 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_pesquisar">
+        app:layout_constraintTop_toBottomOf="@id/btn_search">
 
         <LinearLayout
             android:layout_width="match_parent"

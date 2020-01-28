@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/cepFragment"
-        android:name="livroandroid.com.consultacep.cep.CepFragment"
+        android:name="livroandroid.com.consultacep.cep.ui.CepFragment"
         android:label="fragment_cep"
         tools:layout="@layout/fragment_cep" />
 

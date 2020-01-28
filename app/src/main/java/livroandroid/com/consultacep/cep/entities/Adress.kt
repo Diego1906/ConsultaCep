@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class Adress(
 
-    @SerializedName("")
+    @SerializedName("cep")
     val cep: String? = null,
 
     @SerializedName("logradouro")

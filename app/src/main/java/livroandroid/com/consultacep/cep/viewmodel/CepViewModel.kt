@@ -6,18 +6,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import livroandroid.com.consultacep.cep.entities.Adress
 import livroandroid.com.consultacep.repository.AdressRepository
-import livroandroid.com.consultacep.util.singleArgViewModelFactory
 
 class CepViewModel(private val adressRepository: AdressRepository) : ViewModel() {
-
-    companion object {
-        /**
-         * Factory for creating [MainViewModel]
-         *
-         * @param arg the repository to pass to [MainViewModel]
-         */
-        val FACTORY = singleArgViewModelFactory(::CepViewModel)
-    }
 
     val viewModelJob = Job()
 
@@ -43,7 +33,11 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
     val uf: LiveData<String>
         get() = _uf
 
-    private fun cleanFiels() {
+    private val _spinner = MutableLiveData<Boolean>(false)
+    val spinner: LiveData<Boolean>
+        get() = _spinner
+
+    fun cleanFields() {
         _cep.value = null
         _rua.value = null
         _bairro.value = null
@@ -72,5 +66,9 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun showSpinner(value: Boolean = false) {
+        _spinner.value = value
     }
 }

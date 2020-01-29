@@ -1,4 +1,4 @@
-package livroandroid.com.consultacep
+package livroandroid.com.consulta
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

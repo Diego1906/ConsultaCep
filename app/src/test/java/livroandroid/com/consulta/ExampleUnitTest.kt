@@ -1,4 +1,4 @@
-package livroandroid.com.consultacep
+package livroandroid.com.consulta
 
 import org.junit.Test
 

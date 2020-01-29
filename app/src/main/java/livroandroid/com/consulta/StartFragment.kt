@@ -1,4 +1,4 @@
-package livroandroid.com.consultacep
+package livroandroid.com.consulta
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,8 +1,8 @@
-package livroandroid.com.consultacep.cep.viewmodel
+package livroandroid.com.consulta.cep.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import livroandroid.com.consultacep.repository.AdressRepository
+import livroandroid.com.consulta.repository.AdressRepository
 
 class CepViewModelFactory(private val adressRepository: AdressRepository) :
     ViewModelProvider.Factory {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="livroandroid.com.consultacep.StartFragment"
+        android:name="livroandroid.com.consulta.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/cepFragment"
-        android:name="livroandroid.com.consultacep.cep.ui.CepFragment"
+        android:name="livroandroid.com.consulta.cep.ui.CepFragment"
         android:label="fragment_cep"
         tools:layout="@layout/fragment_cep" />
 

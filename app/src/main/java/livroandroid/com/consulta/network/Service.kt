@@ -1,5 +1,6 @@
-package livroandroid.com.consultacep.network
+package livroandroid.com.consulta.network
 
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -9,9 +10,9 @@ class RetroFitConfig {
     private val URL_BASE = "https://viacep.com.br/ws/"
 
     init {
-        retrofit = Retrofit
-            .Builder()
+        retrofit = Retrofit.Builder()
             .baseUrl(URL_BASE)
+            //.addCallAdapterFactory(MyCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

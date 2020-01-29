@@ -1,13 +1,16 @@
-package livroandroid.com.consultacep.cep.viewmodel
+package livroandroid.com.consulta.cep.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
-import livroandroid.com.consultacep.cep.entities.Adress
-import livroandroid.com.consultacep.repository.AdressRepository
+import livroandroid.com.consulta.cep.entities.Adress
+import livroandroid.com.consulta.repository.AdressRepository
 
 class CepViewModel(private val adressRepository: AdressRepository) : ViewModel() {
+
+    private val TAG = javaClass.simpleName
 
     val viewModelJob = Job()
 
@@ -47,10 +50,16 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
 
     fun searchAdress(cep: String) {
         uiScope.launch {
-            withContext(Dispatchers.IO) {
-                val adress = adressRepository.searchAdress(cep)
 
-                fillFields(adress)
+            delay(10_000)
+
+            withContext(Dispatchers.IO) {
+                try {
+                    val adress = adressRepository.searchAdress(cep)
+                    fillFields(adress)
+                } catch (ex: Exception) {
+                    Log.e(TAG, "Exception: ${ex.message} - ${ex.stackTrace} ")
+                }
             }
         }
     }

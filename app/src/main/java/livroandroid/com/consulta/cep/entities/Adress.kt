@@ -1,10 +1,9 @@
-package livroandroid.com.consultacep.cep.entities
+package livroandroid.com.consulta.cep.entities
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Adress(
-
     @SerializedName("cep")
     val cep: String? = null,
 

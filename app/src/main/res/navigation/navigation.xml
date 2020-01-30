@@ -13,11 +13,19 @@
         <action
             android:id="@+id/action_startFragment_to_cepFragment"
             app:destination="@id/cepFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_enderecoFragment"
+            app:destination="@id/enderecoFragment" />
     </fragment>
     <fragment
         android:id="@+id/cepFragment"
         android:name="livroandroid.com.consulta.cep.ui.CepFragment"
         android:label="fragment_cep"
         tools:layout="@layout/fragment_cep" />
+    <fragment
+        android:id="@+id/enderecoFragment"
+        android:name="livroandroid.com.consulta.endereco.ui.EnderecoFragment"
+        android:label="fragment_endereco"
+        tools:layout="@layout/fragment_endereco" />
 
 </navigation>

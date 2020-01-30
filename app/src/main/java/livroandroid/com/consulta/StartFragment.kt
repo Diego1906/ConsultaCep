@@ -24,7 +24,7 @@ class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedL
     override fun onStart() {
         super.onStart()
 
-        this.setTitle(getString(R.string.consulta_por_endereco))
+        this.setTitle(getString(R.string.consulta))
 
         bottom_navigation.setOnNavigationItemSelectedListener(this)
     }
@@ -37,6 +37,9 @@ class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedL
                 )
             }
             R.id.menu_endereco -> {
+                this.findNavController().navigate(
+                    StartFragmentDirections.actionStartFragmentToEnderecoFragment()
+                )
             }
         }
         return true

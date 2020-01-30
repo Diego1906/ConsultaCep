@@ -1,4 +1,18 @@
 <resources>
-    <string name="app_name">Consulta Endereço</string>
-    <string name="preencha_o_cep">Preencha o campo do Cep.</string>
+    <string name="app_name">@string/consulta_por_endereco</string>
+    <string name="consulta_por_endereco">Consulta Endereço</string>
+    <string name="preencha_o_cep">Preencha o campo do cep</string>
+    <string name="digite_cep_completo">Digite o cep com 8 dígitos</string>
+    <string name="digite_o_cep_aqui">Digite o cep aqui</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="cep">Cep</string>
+    <string name="rua">Rua</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">Cidade</string>
+    <string name="uf">UF</string>
+    <string name="icone_da_tela_incial">Icone da tela incial</string>
+    <string name="consulta_por_cep">Consulta por Cep</string>
+    <string name="exception">Exception: </string>
+    <string name="nao_foi_possivel_consultar_cep">Não foi possível consultar o Cep. Houve um erro inesperado: </string>
+    <string name="endereco">Endereço</string>
 </resources>

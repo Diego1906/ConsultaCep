@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="cepViewModel"
             type="livroandroid.com.consulta.cep.viewmodel.CepViewModel" />
@@ -20,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:textColorHint="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -27,7 +30,7 @@
                 android:id="@+id/txt_cep_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cep"
+                android:hint="@string/digite_o_cep_aqui"
                 android:inputType="number"
                 android:maxLength="8" />
 
@@ -39,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Pesquisar"
+            android:text="@string/pesquisar"
             app:layout_constraintEnd_toEndOf="@id/input_text"
             app:layout_constraintStart_toStartOf="@id/input_text"
             app:layout_constraintTop_toBottomOf="@id/input_text" />
@@ -64,7 +67,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cep" />
+                    android:text="@string/cep"
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
@@ -77,15 +81,17 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="2dp"
                     android:text="@{cepViewModel.cep}"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:text="08673230" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Rua" />
+                    android:text="@string/rua"
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
@@ -98,15 +104,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@{cepViewModel.rua}"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:text="Tomisaburo Urano" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Bairro" />
+                    android:text="@string/bairro"
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
@@ -119,15 +127,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@{cepViewModel.bairro}"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:text="Vila Figueira" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Cidade" />
+                    android:text="@string/cidade"
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
@@ -140,15 +150,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@{cepViewModel.cidade}"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:text="Suzano" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="UF" />
+                    android:text="@string/uf"
+                    android:textColor="@color/colorPrimary" />
 
                 <View
                     android:layout_width="match_parent"
@@ -161,22 +173,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@{cepViewModel.uf}"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:text="SP" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            <ProgressBar
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:visibility="@{cepViewModel.spinner ? View.VISIBLE : View.GONE}" />
 
-        <ProgressBar
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

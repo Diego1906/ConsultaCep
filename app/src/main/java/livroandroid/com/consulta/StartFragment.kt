@@ -2,13 +2,17 @@ package livroandroid.com.consulta
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_start.*
+import livroandroid.com.consulta.util.setTitle
 
-class StartFragment : Fragment() {
+
+class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,10 +24,21 @@ class StartFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        btn_cep.setOnClickListener {
-            this.findNavController().navigate(
-                StartFragmentDirections.actionStartFragmentToCepFragment()
-            )
+        this.setTitle(getString(R.string.consulta_por_endereco))
+
+        bottom_navigation.setOnNavigationItemSelectedListener(this)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_cep -> {
+                this.findNavController().navigate(
+                    StartFragmentDirections.actionStartFragmentToCepFragment()
+                )
+            }
+            R.id.menu_endereco -> {
+            }
         }
+        return true
     }
 }

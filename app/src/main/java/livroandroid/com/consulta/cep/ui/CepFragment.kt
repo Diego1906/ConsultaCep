@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,6 +17,8 @@ import livroandroid.com.consulta.cep.viewmodel.CepViewModelFactory
 import livroandroid.com.consulta.databinding.FragmentCepBinding
 import livroandroid.com.consulta.network.RetroFitConfig
 import livroandroid.com.consulta.repository.AdressRepository
+import livroandroid.com.consulta.util.setTitle
+
 
 class CepFragment : Fragment() {
 
@@ -25,26 +28,37 @@ class CepFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding =
-            DataBindingUtil.inflate<FragmentCepBinding>(
-                inflater,
-                R.layout.fragment_cep,
-                container,
-                false
-            )
+        val binding = DataBindingUtil.inflate<FragmentCepBinding>(
+            inflater,
+            R.layout.fragment_cep,
+            container,
+            false
+        )
 
-        val repository = AdressRepository(RetroFitConfig())
+        val application = requireNotNull(activity).application
+
+        val repository = AdressRepository(RetroFitConfig(), application)
 
         val viewModelFactory = CepViewModelFactory(repository)
 
-        viewModel = ViewModelProviders
-            .of(this, viewModelFactory)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CepViewModel::class.java)
 
         binding.cepViewModel = viewModel
         binding.setLifecycleOwner(this)
 
-        createObservable()
+        viewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
+            msg?.let {
+                Snackbar.make(this.requireView(), msg, Snackbar.LENGTH_SHORT).apply {
+                    setAnchorView(R.id.card_cep)
+                    show()
+                }
+            }
+        })
+
+        viewModel.error.observe(viewLifecycleOwner, Observer { msg ->
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+        })
 
         return binding.root
     }
@@ -52,32 +66,22 @@ class CepFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        this.setTitle(getString(R.string.consulta_por_cep))
+
         btn_search.setOnClickListener {
+            viewModel.onCleanFields()
 
             val cep = txt_cep_search.editableText.toString()
             if (cep.isEmpty()) {
-                Snackbar.make(
-                    this.requireView(),
-                    getString(R.string.preencha_o_cep),
-                    Snackbar.LENGTH_LONG
-                ).setAnchorView(R.id.card_cep)
-                    .show()
-
+                viewModel.onSnackbarShown(getString(R.string.preencha_o_cep))
+                return@setOnClickListener
+            } else if (cep.length < 8) {
+                viewModel.onSnackbarShown(getString(R.string.digite_cep_completo))
                 return@setOnClickListener
             }
 
-            viewModel.showSpinner(true)
-            viewModel.cleanFields()
-            viewModel.searchAdress(cep)
-            viewModel.showSpinner()
+            viewModel.onSpinnerShown(true)
+            viewModel.onSearchAdress(cep)
         }
-    }
-
-    private fun createObservable() {
-        viewModel.spinner.observe(viewLifecycleOwner, Observer { value ->
-            value.let { show ->
-                spinner.visibility = if (show) View.VISIBLE else View.INVISIBLE
-            }
-        })
     }
 }

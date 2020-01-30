@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
+import livroandroid.com.consulta.R
 import livroandroid.com.consulta.cep.entities.Adress
 import livroandroid.com.consulta.repository.AdressRepository
 
@@ -12,9 +13,15 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
 
     private val TAG = javaClass.simpleName
 
-    val viewModelJob = Job()
+    private val context by lazy {
+        adressRepository.application
+    }
 
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private val viewModelJob = Job()
+
+    private val uiScope by lazy {
+        CoroutineScope(Dispatchers.Main + viewModelJob)
+    }
 
     private var _cep = MutableLiveData<String>()
     val cep: LiveData<String>
@@ -36,11 +43,35 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
     val uf: LiveData<String>
         get() = _uf
 
-    private val _spinner = MutableLiveData<Boolean>(false)
+    private val _spinner = MutableLiveData<Boolean>()
     val spinner: LiveData<Boolean>
         get() = _spinner
 
-    fun cleanFields() {
+    private val _snackBar = MutableLiveData<String?>()
+    val snackbar: LiveData<String?>
+        get() = _snackBar
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
+
+    fun onSearchAdress(cep: String) {
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    onFillFields(adressRepository.searchAdress(cep))
+                } catch (ex: Exception) {
+                    Log.e(TAG, context.getString(R.string.exception) + ex.message)
+                    _error.postValue(
+                        context.getString(R.string.nao_foi_possivel_consultar_cep) + ex.message
+                    )
+                }
+            }
+            onSpinnerShown(false)
+        }
+    }
+
+    fun onCleanFields() {
         _cep.value = null
         _rua.value = null
         _bairro.value = null
@@ -48,23 +79,7 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
         _uf.value = null
     }
 
-    fun searchAdress(cep: String) {
-        uiScope.launch {
-
-            delay(10_000)
-
-            withContext(Dispatchers.IO) {
-                try {
-                    val adress = adressRepository.searchAdress(cep)
-                    fillFields(adress)
-                } catch (ex: Exception) {
-                    Log.e(TAG, "Exception: ${ex.message} - ${ex.stackTrace} ")
-                }
-            }
-        }
-    }
-
-    private fun fillFields(adress: Adress) {
+    private fun onFillFields(adress: Adress) {
         _cep.postValue(adress.cep)
         _rua.postValue(adress.rua)
         _bairro.postValue(adress.bairro)
@@ -77,7 +92,11 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
         viewModelJob.cancel()
     }
 
-    fun showSpinner(value: Boolean = false) {
+    fun onSpinnerShown(value: Boolean) {
         _spinner.value = value
+    }
+
+    fun onSnackbarShown(msg: String? = null) {
+        _snackBar.value = msg
     }
 }

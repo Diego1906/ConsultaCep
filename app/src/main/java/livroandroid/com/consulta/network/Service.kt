@@ -1,6 +1,5 @@
 package livroandroid.com.consulta.network
 
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

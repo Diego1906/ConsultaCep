@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:textColorHint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -33,16 +34,11 @@
                 android:hint="@string/digite_o_cep_aqui"
                 android:inputType="number"
                 android:maxLength="8" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/pesquisar"
+            style="@style/StyleButtonPesquisar"
             app:layout_constraintEnd_toEndOf="@id/input_text"
             app:layout_constraintStart_toStartOf="@id/input_text"
             app:layout_constraintTop_toBottomOf="@id/input_text" />

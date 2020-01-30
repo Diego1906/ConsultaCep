@@ -3,123 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_cep_form"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="@dimen/dimen_8dp"
+        android:layout_marginEnd="@dimen/dimen_8dp"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cep"
-            android:textColor="@color/colorPrimary" />
+            style="@style/StyleLabelForm"
+            android:text="@string/cep" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+        <View style="@style/StyleViewForm" />
 
         <TextView
             android:id="@+id/txt_cep_form"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="2dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="08673230" />
+            style="@style/StyleTextViewForm"
+            tools:text="01311-922" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/rua"
-            android:textColor="@color/colorPrimary" />
+            style="@style/StyleLabelForm"
+            android:text="@string/rua" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+        <View style="@style/StyleViewForm" />
 
         <TextView
             android:id="@+id/txt_rua_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Tomisaburo Urano" />
+            style="@style/StyleTextViewForm"
+            tools:text="Avenida Paulista" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/bairro"
-            android:textColor="@color/colorPrimary" />
+            style="@style/StyleLabelForm"
+            android:text="@string/bairro" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+        <View style="@style/StyleViewForm" />
 
         <TextView
             android:id="@+id/txt_bairro_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Vila Figueira" />
+            style="@style/StyleTextViewForm"
+            tools:text="Bela Vista" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/cidade"
-            android:textColor="@color/colorPrimary" />
+            style="@style/StyleLabelForm"
+            android:text="@string/cidade" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+        <View style="@style/StyleViewForm" />
 
         <TextView
             android:id="@+id/txt_cidade_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Suzano" />
+            style="@style/StyleTextViewForm"
+            tools:text="São Paulo" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/uf"
-            android:textColor="@color/colorPrimary" />
+            style="@style/StyleLabelForm"
+            android:text="@string/uf" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+        <View style="@style/StyleViewForm" />
 
         <TextView
             android:id="@+id/txt_uf_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            style="@style/StyleTextViewForm"
+            android:layout_marginBottom="@dimen/dimen_16dp"
             tools:text="SP" />
 
     </LinearLayout>

@@ -2,16 +2,16 @@ package livroandroid.com.consulta.endereco.ui
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_endereco.*
 import livroandroid.com.consulta.R
@@ -27,17 +27,19 @@ import livroandroid.com.consulta.util.setTitle
 class EnderecoFragment : Fragment() {
 
     private lateinit var viewModel: CepViewModel
-
     private lateinit var uf: String
     private lateinit var cidade: String
     private lateinit var rua: String
+
+    private val adapter by lazy {
+        ListEnderecoAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_endereco, container, false)
+        //val root = inflater.inflate(R.layout.fragment_endereco, container, false)
 
         val application = requireNotNull(activity).application
 
@@ -57,54 +59,71 @@ class EnderecoFragment : Fragment() {
             }
         })
 
-        return root
+        viewModel.listEndereco.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.listEndereco = it
+            }
+        })
+
+        // return root
+        return inflater.inflate(R.layout.fragment_endereco, container, false)
     }
 
     override fun onStart() {
         super.onStart()
 
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+
+        recyclerView?.adapter = adapter
+
         this.setTitle(getString(R.string.consulta_por_endereco))
 
-        val estados = resources.getStringArray(R.array.Estados)
-        if (spinner_estado != null) {
-            val adapter =
-                ArrayAdapter(
-                    this.requireContext(),
-                    android.R.layout.simple_spinner_dropdown_item,
-                    estados
-                )
-            spinner_estado.adapter = adapter
-        }
+        onInitializeSpinner()
 
+        onItemSelectedListenerSpinner()
+
+        btn_pesquisar_endereco.setOnClickListener {
+            if (onValidateParameters())
+                return@setOnClickListener
+
+            viewModel.onSearchListAdress(uf, cidade, rua)
+        }
+    }
+
+    private fun onValidateParameters(): Boolean {
+        cidade = edit_text_cidade.editableText.toString()
+        rua = edit_text_rua.editableText.toString()
+
+        if (cidade.isEmpty()) {
+            viewModel.onSnackbarShown("Preencha o campo cidade")
+            return true
+        } else if (rua.isEmpty()) {
+            viewModel.onSnackbarShown("Preencha o campo rua")
+            return true
+        }
+        return false
+    }
+
+    private fun onItemSelectedListenerSpinner() {
         spinner_estado.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 uf = spinner_estado.selectedItem.toString()
             }
         }
+    }
 
-        btn_pesquisar_endereco.setOnClickListener {
-
-            cidade = edit_text_cidade.editableText.toString()
-            rua = edit_text_rua.editableText.toString()
-
-//            if (cidade.isEmpty()) {
-//                viewModel.onSnackbarShown("Preencha o campo cidade")
-//                return@setOnClickListener
-//            } else if (rua.isEmpty()) {
-//                viewModel.onSnackbarShown("Preencha o campo rua")
-//                return@setOnClickListener
-//            }
-
-            viewModel.onSearchListAdress(uf, cidade, rua)
+    private fun onInitializeSpinner() {
+        spinner_estado?.let {
+            it.adapter = ArrayAdapter(
+                this.requireContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                resources.getStringArray(R.array.Estados)
+            )
         }
     }
 }

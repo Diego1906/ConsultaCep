@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_cep_form"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_8dp"
+    android:elevation="@dimen/dimen_2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_8dp">
+
+        <TextView
+            style="@style/StyleLabelForm"
+            android:text="@string/cep" />
+
+        <View style="@style/StyleViewForm" />
+
+        <TextView
+            android:id="@+id/txt_cep_item"
+            style="@style/StyleTextViewForm"
+            tools:text="01311-922" />
+
+        <TextView
+            style="@style/StyleLabelForm2"
+            android:text="@string/rua" />
+
+        <View style="@style/StyleViewForm" />
+
+        <TextView
+            android:id="@+id/txt_rua_item"
+            style="@style/StyleTextViewForm"
+            tools:text="Avenida Paulista" />
+
+        <TextView
+            style="@style/StyleLabelForm2"
+            android:text="@string/bairro" />
+
+        <View style="@style/StyleViewForm" />
+
+        <TextView
+            android:id="@+id/txt_bairro_item"
+            style="@style/StyleTextViewForm"
+            tools:text="Bela Vista" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

@@ -55,6 +55,10 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
     val error: LiveData<String>
         get() = _error
 
+    private val _listEndereco = MutableLiveData<List<Adress>>()
+    val listEndereco: LiveData<List<Adress>>
+        get() = _listEndereco
+
     fun onSearchAdress(cep: String) {
         uiScope.launch {
             withContext(Dispatchers.IO) {
@@ -72,10 +76,9 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
     }
 
     fun onSearchListAdress(uf: String, cidade: String, rua: String) {
-        val list = adressRepository.searchListAdress(uf, cidade, rua)
-
-        if(list.isEmpty().not()) {
-            _snackBar.value = list[0].cidade
+        adressRepository.searchListAdress(uf, cidade, rua).let {
+            if (it.isNotEmpty())
+                _listEndereco.value = it
         }
     }
 

@@ -4,91 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="livroandroid.com.consulta.endereco.ui.EnderecoFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/gray200">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/txt_estado"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_8dp"
+            android:text="@string/selecione_um_estado"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/dimen_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_estado"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_estado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_estado"
+            app:layout_constraintTop_toTopOf="@id/txt_estado" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_text_cidade"
+            style="@style/StyleInputText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner_estado">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_cidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/digite_o_nome_da_cidade_aqui"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_text_rua"
+            style="@style/StyleInputText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_text_cidade">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_rua"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/digite_o_nome_da_rua_aqui"
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_pesquisar_endereco"
+            style="@style/StyleButtonPesquisar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_text_rua" />
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_pesquisar_endereco"
+            app:layout_constraintVertical_bias="0.0">
 
-            <TextView
-                android:id="@+id/txt_estado"
-                android:layout_width="@dimen/dimen_0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_8dp"
-                android:text="@string/selecione_um_estado"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/dimen_16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Spinner
-                android:id="@+id/spinner_estado"
-                android:layout_width="@dimen/dimen_0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_8dp"
-                android:layout_marginEnd="@dimen/dimen_8dp"
-                app:layout_constraintBottom_toBottomOf="@id/txt_estado"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/txt_estado"
-                app:layout_constraintTop_toTopOf="@id/txt_estado" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_text_cidade"
-                style="@style/StyleInputText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/spinner_estado">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_cidade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/digite_o_nome_da_cidade_aqui"
-                    android:inputType="textCapWords"
-                    android:maxLength="8" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_text_rua"
-                style="@style/StyleInputText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_text_cidade">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_rua"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/digite_o_nome_da_rua_aqui"
-                    android:inputType="textCapWords"
-                    android:maxLength="8" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/btn_pesquisar_endereco"
-                style="@style/StyleButtonPesquisar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_text_rua" />
-
-            <include
-                android:id="@+id/card_cep_form"
-                layout="@layout/form_result_cep"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_8dp"
-                android:layout_marginTop="@dimen/dimen_24dp"
                 android:layout_marginEnd="@dimen/dimen_8dp"
-                android:layout_marginBottom="@dimen/dimen_8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_pesquisar_endereco" />
+                tools:listitem="@layout/item_endereco" />
+        </androidx.core.widget.NestedScrollView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

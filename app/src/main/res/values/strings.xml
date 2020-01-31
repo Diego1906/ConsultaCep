@@ -19,6 +19,8 @@
     <string name="selecione_um_estado">Selecione um Estado:</string>
     <string name="digite_o_nome_da_cidade_aqui">Digite o nome da cidade aqui</string>
     <string name="digite_o_nome_da_rua_aqui">Digite o nome da rua aqui</string>
+    <string name="error_500">Erro ao acessar nossos serviços. Tente novamente mais tarde.</string>
+    <string name="generic_error_remote">Erro desconhecido, tente mais tarde.</string>
 
     <string-array name="Estados">
         <item>AC</item>

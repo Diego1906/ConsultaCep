@@ -71,6 +71,14 @@ class CepViewModel(private val adressRepository: AdressRepository) : ViewModel()
         }
     }
 
+    fun onSearchListAdress(uf: String, cidade: String, rua: String) {
+        val list = adressRepository.searchListAdress(uf, cidade, rua)
+
+        if(list.isEmpty().not()) {
+            _snackBar.value = list[0].cidade
+        }
+    }
+
     fun onCleanFields() {
         _cep.value = null
         _rua.value = null

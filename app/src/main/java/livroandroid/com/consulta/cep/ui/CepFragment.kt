@@ -50,7 +50,7 @@ class CepFragment : Fragment() {
         viewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
                 Snackbar.make(this.requireView(), msg, Snackbar.LENGTH_SHORT).apply {
-                    setAnchorView(R.id.card_cep)
+                    setAnchorView(R.id.card_cep_form)
                     show()
                 }
             }

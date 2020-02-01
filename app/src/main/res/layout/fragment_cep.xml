@@ -10,7 +10,7 @@
 
         <variable
             name="cepViewModel"
-            type="livroandroid.com.consulta.cep.viewmodel.CepViewModel" />
+            type="livroandroid.com.consulta.viewmodel.CepViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@{cepViewModel.rua}"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     tools:text="Tomisaburo Urano" />

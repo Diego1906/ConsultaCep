@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_cep.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.cep.viewmodel.CepViewModel
-import livroandroid.com.consulta.cep.viewmodel.CepViewModelFactory
+import livroandroid.com.consulta.viewmodel.CepViewModel
+import livroandroid.com.consulta.viewmodel.CepViewModelFactory
 import livroandroid.com.consulta.databinding.FragmentCepBinding
 import livroandroid.com.consulta.network.RetroFitConfig
 import livroandroid.com.consulta.repository.AdressRepository

@@ -8,9 +8,9 @@ import kotlinx.android.synthetic.main.item_endereco.view.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.cep.entities.Adress
 
-class ListEnderecoAdapter : RecyclerView.Adapter<ItemHolder>() {
+class ListEnderecoAdapter : RecyclerView.Adapter<ListEnderecoAdapter.ItemHolder>() {
 
-    var listEndereco = listOf<Adress>()
+    var listAdress = listOf<Adress>()
         set(value) {
             if (field != value) {
                 field = value
@@ -19,25 +19,31 @@ class ListEnderecoAdapter : RecyclerView.Adapter<ItemHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_endereco, parent, false)
-
-        return ItemHolder(view)
+        return ItemHolder.from(parent)
     }
 
-    override fun getItemCount() = listEndereco.size
+    override fun getItemCount() = listAdress.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        val item = listEndereco[position]
-        holder.cep.text = item.cep
-        holder.rua.text = item.rua
-        holder.bairro.text = item.bairro
+        val item = listAdress[position]
+        holder.bind(item)
     }
-}
 
-class ItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val cep = itemView.txt_cep_item
-    val rua = itemView.txt_rua_item
-    val bairro = itemView.txt_bairro_item
+    class ItemHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bind(item: Adress) {
+            itemView.txt_cep_item.text = item.cep
+            itemView.txt_rua_item.text = item.rua
+            itemView.txt_bairro_item.text = item.bairro
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ItemHolder {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_endereco, parent, false)
+
+                return ItemHolder(view)
+            }
+        }
+    }
 }

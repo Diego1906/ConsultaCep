@@ -1,4 +1,4 @@
-package livroandroid.com.consulta.cep.viewmodel
+package livroandroid.com.consulta.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

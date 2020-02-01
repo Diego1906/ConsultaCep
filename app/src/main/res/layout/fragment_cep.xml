@@ -13,24 +13,18 @@
             type="livroandroid.com.consulta.viewmodel.AdressViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/StyleConstraintLayoutForm">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textColorHint="@color/colorPrimary"
+            style="@style/StyleInputTextForm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txt_cep_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/StyleInputEditTextForm"
                 android:hint="@string/digite_o_cep_aqui"
                 android:inputType="number"
                 android:maxLength="8" />
@@ -39,150 +33,86 @@
         <Button
             android:id="@+id/btn_search"
             style="@style/StyleButtonPesquisar"
-            app:layout_constraintEnd_toEndOf="@id/input_text"
-            app:layout_constraintStart_toStartOf="@id/input_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_text" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_cep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
+            style="@style/StyleCardViewForm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_search">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:orientation="vertical">
+            <LinearLayout style="@style/StyleLinerLayoutForm">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cep"
-                    android:textColor="@color/colorPrimary" />
+                    style="@style/StyleLabelForm"
+                    android:text="@string/cep" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                <View style="@style/StyleViewForm" />
 
                 <TextView
                     android:id="@+id/txt_cep"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="2dp"
+                    style="@style/StyleTextViewForm"
                     android:text="@{adressViewModel.cep}"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     tools:text="08673230" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/rua"
-                    android:textColor="@color/colorPrimary" />
+                    style="@style/StyleLabelForm2"
+                    android:text="@string/rua" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                <View style="@style/StyleViewForm" />
 
                 <TextView
                     android:id="@+id/txt_rua"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    style="@style/StyleTextViewForm"
                     android:text="@{adressViewModel.rua}"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     tools:text="Tomisaburo Urano" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/bairro"
-                    android:textColor="@color/colorPrimary" />
+                    style="@style/StyleLabelForm2"
+                    android:text="@string/bairro" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                <View style="@style/StyleViewForm" />
 
                 <TextView
                     android:id="@+id/txt_bairro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    style="@style/StyleTextViewForm"
                     android:text="@{adressViewModel.bairro}"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     tools:text="Vila Figueira" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/cidade"
-                    android:textColor="@color/colorPrimary" />
+                    style="@style/StyleLabelForm2"
+                    android:text="@string/cidade" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                <View style="@style/StyleViewForm" />
 
                 <TextView
                     android:id="@+id/txt_cidade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    style="@style/StyleTextViewForm"
                     android:text="@{adressViewModel.cidade}"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     tools:text="Suzano" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/uf"
-                    android:textColor="@color/colorPrimary" />
+                    style="@style/StyleLabelForm2"
+                    android:text="@string/uf" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
+                <View style="@style/StyleViewForm" />
 
                 <TextView
                     android:id="@+id/txt_uf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    style="@style/StyleTextViewForm"
                     android:text="@{adressViewModel.uf}"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     tools:text="SP" />
 
             </LinearLayout>
 
             <ProgressBar
-                android:id="@+id/spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:visibility="@{adressViewModel.spinner ? View.VISIBLE : View.GONE}" />
+                android:id="@+id/progressBar"
+                style="@style/StyleProgressBar"
+                android:visibility="@{adressViewModel.progressBar ? View.VISIBLE : View.GONE}" />
 
         </androidx.cardview.widget.CardView>
 

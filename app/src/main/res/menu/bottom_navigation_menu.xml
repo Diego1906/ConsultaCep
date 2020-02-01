@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/menu_cep"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/ic_location_postal_code"
         android:title="@string/cep"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_endereco"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_location_adress"
         android:title="@string/endereco"
         app:showAsAction="always" />
 
-    </menu>
+</menu>

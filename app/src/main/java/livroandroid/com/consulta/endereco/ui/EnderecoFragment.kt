@@ -52,9 +52,7 @@ class EnderecoFragment : Fragment() {
 
         adressViewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
-                Snackbar.make(this.requireView(), msg, Snackbar.LENGTH_SHORT).apply {
-                    show()
-                }
+                Snackbar.make(this.requireView(), it, Snackbar.LENGTH_SHORT).show()
             }
         })
 

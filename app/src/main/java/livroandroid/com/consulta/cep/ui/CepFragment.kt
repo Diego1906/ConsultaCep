@@ -49,7 +49,7 @@ class CepFragment : Fragment() {
         adressViewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
                 Snackbar.make(this.requireView(), it, Snackbar.LENGTH_SHORT).apply {
-                    setAnchorView(R.id.card_cep)
+                    //setAnchorView(R.id.card_cep)
                     show()
                 }
             }
@@ -79,7 +79,7 @@ class CepFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            adressViewModel.onSpinnerShown(true)
+            adressViewModel.onProgressBarShown(true)
             adressViewModel.onSearchAdress(cep)
         }
     }

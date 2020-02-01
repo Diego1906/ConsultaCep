@@ -43,9 +43,9 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
     val uf: LiveData<String>
         get() = _uf
 
-    private val _spinner = MutableLiveData<Boolean>()
-    val spinner: LiveData<Boolean>
-        get() = _spinner
+    private val _progressBar = MutableLiveData<Boolean>()
+    val progressBar: LiveData<Boolean>
+        get() = _progressBar
 
     private val _snackBar = MutableLiveData<String?>()
     val snackbar: LiveData<String?>
@@ -71,7 +71,7 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
                     )
                 }
             }
-            onSpinnerShown(false)
+            onProgressBarShown(false)
         }
     }
 
@@ -103,8 +103,8 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
         viewModelJob.cancel()
     }
 
-    fun onSpinnerShown(value: Boolean) {
-        _spinner.value = value
+    fun onProgressBarShown(value: Boolean) {
+        _progressBar.value = value
     }
 
     fun onSnackbarShown(msg: String? = null) {

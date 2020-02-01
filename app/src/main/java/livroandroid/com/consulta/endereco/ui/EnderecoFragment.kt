@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_endereco.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.viewmodel.CepViewModel
-import livroandroid.com.consulta.viewmodel.CepViewModelFactory
+import livroandroid.com.consulta.viewmodel.AdressViewModel
+import livroandroid.com.consulta.viewmodel.AdressViewModelFactory
 import livroandroid.com.consulta.network.RetroFitConfig
 import livroandroid.com.consulta.repository.AdressRepository
 import livroandroid.com.consulta.util.setTitle
@@ -26,7 +26,7 @@ import livroandroid.com.consulta.util.setTitle
  */
 class EnderecoFragment : Fragment() {
 
-    private lateinit var viewModel: CepViewModel
+    private lateinit var adressViewModel: AdressViewModel
     private lateinit var uf: String
     private lateinit var cidade: String
     private lateinit var rua: String
@@ -45,12 +45,12 @@ class EnderecoFragment : Fragment() {
 
         val repository = AdressRepository(RetroFitConfig(), application)
 
-        val viewModelFactory = CepViewModelFactory(repository)
+        val viewModelFactory = AdressViewModelFactory(repository)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(CepViewModel::class.java)
+        adressViewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(AdressViewModel::class.java)
 
-        viewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
+        adressViewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
                 Snackbar.make(this.requireView(), msg, Snackbar.LENGTH_SHORT).apply {
                     show()
@@ -58,7 +58,7 @@ class EnderecoFragment : Fragment() {
             }
         })
 
-        viewModel.listEndereco.observe(viewLifecycleOwner, Observer {
+        adressViewModel.listEndereco.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.listAdress = it
             }
@@ -86,7 +86,7 @@ class EnderecoFragment : Fragment() {
             if (onValidateParameters())
                 return@setOnClickListener
 
-            viewModel.onSearchListAdress(uf, cidade, rua)
+            adressViewModel.onSearchListAdress(uf, cidade, rua)
         }
     }
 
@@ -95,10 +95,10 @@ class EnderecoFragment : Fragment() {
         rua = edit_text_rua.editableText.toString()
 
         if (cidade.isEmpty()) {
-            viewModel.onSnackbarShown("Preencha o campo cidade")
+            adressViewModel.onSnackbarShown("Preencha o campo cidade")
             return true
         } else if (rua.isEmpty()) {
-            viewModel.onSnackbarShown("Preencha o campo rua")
+            adressViewModel.onSnackbarShown("Preencha o campo rua")
             return true
         }
         return false

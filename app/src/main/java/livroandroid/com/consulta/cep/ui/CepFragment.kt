@@ -12,17 +12,16 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_cep.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.viewmodel.CepViewModel
-import livroandroid.com.consulta.viewmodel.CepViewModelFactory
+import livroandroid.com.consulta.viewmodel.AdressViewModel
+import livroandroid.com.consulta.viewmodel.AdressViewModelFactory
 import livroandroid.com.consulta.databinding.FragmentCepBinding
 import livroandroid.com.consulta.network.RetroFitConfig
 import livroandroid.com.consulta.repository.AdressRepository
 import livroandroid.com.consulta.util.setTitle
 
-
 class CepFragment : Fragment() {
 
-    private lateinit var viewModel: CepViewModel
+    private lateinit var adressViewModel: AdressViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,24 +38,24 @@ class CepFragment : Fragment() {
 
         val repository = AdressRepository(RetroFitConfig(), application)
 
-        val viewModelFactory = CepViewModelFactory(repository)
+        val viewModelFactory = AdressViewModelFactory(repository)
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(CepViewModel::class.java)
+        adressViewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(AdressViewModel::class.java)
 
-        binding.cepViewModel = viewModel
+        binding.adressViewModel = adressViewModel
         binding.setLifecycleOwner(this)
 
-        viewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
+        adressViewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
-                Snackbar.make(this.requireView(), msg, Snackbar.LENGTH_SHORT).apply {
+                Snackbar.make(this.requireView(), it, Snackbar.LENGTH_SHORT).apply {
                     setAnchorView(R.id.card_cep)
                     show()
                 }
             }
         })
 
-        viewModel.error.observe(viewLifecycleOwner, Observer { msg ->
+        adressViewModel.error.observe(viewLifecycleOwner, Observer { msg ->
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
         })
 
@@ -69,19 +68,19 @@ class CepFragment : Fragment() {
         this.setTitle(getString(R.string.consulta_por_cep))
 
         btn_search.setOnClickListener {
-            viewModel.onCleanFields()
+            adressViewModel.onCleanFields()
 
             val cep = txt_cep_search.editableText.toString()
             if (cep.isEmpty()) {
-                viewModel.onSnackbarShown(getString(R.string.preencha_o_cep))
+                adressViewModel.onSnackbarShown(getString(R.string.preencha_o_cep))
                 return@setOnClickListener
             } else if (cep.length < 8) {
-                viewModel.onSnackbarShown(getString(R.string.digite_cep_completo))
+                adressViewModel.onSnackbarShown(getString(R.string.digite_cep_completo))
                 return@setOnClickListener
             }
 
-            viewModel.onSpinnerShown(true)
-            viewModel.onSearchAdress(cep)
+            adressViewModel.onSpinnerShown(true)
+            adressViewModel.onSearchAdress(cep)
         }
     }
 }

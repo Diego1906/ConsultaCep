@@ -9,7 +9,7 @@ import livroandroid.com.consulta.R
 import livroandroid.com.consulta.cep.entities.Adress
 import livroandroid.com.consulta.repository.AdressRepository
 
-class CepViewModel(private val adressRepository: AdressRepository) : ViewModel() {
+class AdressViewModel(private val adressRepository: AdressRepository) : ViewModel() {
 
     private val TAG = javaClass.simpleName
 

@@ -9,8 +9,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="cepViewModel"
-            type="livroandroid.com.consulta.viewmodel.CepViewModel" />
+            name="adressViewModel"
+            type="livroandroid.com.consulta.viewmodel.AdressViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="2dp"
-                    android:text="@{cepViewModel.cep}"
+                    android:text="@{adressViewModel.cep}"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="@{cepViewModel.rua}"
+                    android:text="@{adressViewModel.rua}"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -122,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="@{cepViewModel.bairro}"
+                    android:text="@{adressViewModel.bairro}"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -145,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="@{cepViewModel.cidade}"
+                    android:text="@{adressViewModel.cidade}"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -168,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="@{cepViewModel.uf}"
+                    android:text="@{adressViewModel.uf}"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -182,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:visibility="@{cepViewModel.spinner ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{adressViewModel.spinner ? View.VISIBLE : View.GONE}" />
 
         </androidx.cardview.widget.CardView>
 

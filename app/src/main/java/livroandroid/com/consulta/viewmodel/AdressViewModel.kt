@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.cep.entities.Adress
+import livroandroid.com.consulta.entities.Adress
 import livroandroid.com.consulta.repository.AdressRepository
 
 class AdressViewModel(private val adressRepository: AdressRepository) : ViewModel() {
@@ -47,9 +47,13 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
     val progressBar: LiveData<Boolean>
         get() = _progressBar
 
-    private val _snackBar = MutableLiveData<String?>()
-    val snackbar: LiveData<String?>
+    private val _snackBar = MutableLiveData<String>()
+    val snackbar: LiveData<String>
         get() = _snackBar
+
+    private val _toast = MutableLiveData<String>()
+    val toast: LiveData<String>
+        get() = _toast
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
@@ -63,7 +67,12 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    onFillFields(adressRepository.searchAdress(cep))
+                    val adress = adressRepository.searchAdress(cep)
+                    _toast.postValue(
+                        adress.bairro + " - " + adress.cep + " - " + adress.cidade +
+                                " - " + adress.rua + " - " + adress.uf
+                    )
+                    //onFillFields()
                 } catch (ex: Exception) {
                     Log.e(TAG, context.getString(R.string.exception) + ex.message)
                     _error.postValue(
@@ -76,9 +85,16 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
     }
 
     fun onSearchListAdress(uf: String, cidade: String, rua: String) {
-        adressRepository.searchListAdress(uf, cidade, rua).let {
-            if (it.isNotEmpty())
-                _listEndereco.value = it
+        try {
+            adressRepository.searchListAdress(uf, cidade, rua).let {
+                if (it.isNotEmpty())
+                    _listEndereco.value = it
+                else
+                    _toast.value = context.getString(R.string.nao_foi_possivel_localizar)
+            }
+        } catch (ex: Exception) {
+            Log.e(TAG, context.getString(R.string.exception) + ex.message)
+            _error.value = context.getString(R.string.erro_inesperado) + ex.message
         }
     }
 
@@ -107,7 +123,7 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
         _progressBar.value = value
     }
 
-    fun onSnackbarShown(msg: String? = null) {
+    fun onSnackbarShown(msg: String) {
         _snackBar.value = msg
     }
 }

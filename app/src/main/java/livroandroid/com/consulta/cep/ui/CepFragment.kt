@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,12 +11,13 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_cep.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.viewmodel.AdressViewModel
-import livroandroid.com.consulta.viewmodel.AdressViewModelFactory
 import livroandroid.com.consulta.databinding.FragmentCepBinding
 import livroandroid.com.consulta.network.RetroFitConfig
 import livroandroid.com.consulta.repository.AdressRepository
+import livroandroid.com.consulta.util.Toast
 import livroandroid.com.consulta.util.setTitle
+import livroandroid.com.consulta.viewmodel.AdressViewModel
+import livroandroid.com.consulta.viewmodel.AdressViewModelFactory
 
 class CepFragment : Fragment() {
 
@@ -49,14 +49,18 @@ class CepFragment : Fragment() {
         adressViewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
                 Snackbar.make(this.requireView(), it, Snackbar.LENGTH_SHORT).apply {
-                    //setAnchorView(R.id.card_cep)
+                    setAnchorView(R.id.card_cep)
                     show()
                 }
             }
         })
 
-        adressViewModel.error.observe(viewLifecycleOwner, Observer { msg ->
-            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+        adressViewModel.toast.observe(viewLifecycleOwner, Observer {
+            it.Toast(application)
+        })
+
+        adressViewModel.error.observe(viewLifecycleOwner, Observer {
+            it.Toast(application)
         })
 
         return binding.root

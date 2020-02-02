@@ -21,6 +21,9 @@
     <string name="digite_o_nome_da_rua_aqui">Digite o nome da rua aqui</string>
     <string name="error_500">Erro ao acessar nossos serviços. Tente novamente mais tarde.</string>
     <string name="generic_error_remote">Erro desconhecido, tente mais tarde.</string>
+    <string name="nao_foi_possivel_localizar">Não foi possível localizar ao menos um endereço com as informações fornecidas.
+        Verifique se as informações inseridas estão corretas e faça uma nova pesquisa.</string>
+    <string name="erro_inesperado">Houve um erro inesperado. Motivo:</string>
 
     <string-array name="Estados">
         <item>AC</item>

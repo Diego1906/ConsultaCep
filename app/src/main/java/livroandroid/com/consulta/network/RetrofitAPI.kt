@@ -1,6 +1,6 @@
 package livroandroid.com.consulta.network
 
-import livroandroid.com.consulta.cep.entities.Adress
+import livroandroid.com.consulta.entities.Adress
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

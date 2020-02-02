@@ -3,7 +3,7 @@ package livroandroid.com.consulta.repository
 import android.app.Application
 import android.util.Log
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.cep.entities.Adress
+import livroandroid.com.consulta.entities.Adress
 import livroandroid.com.consulta.network.RetroFitConfig
 import retrofit2.Call
 import retrofit2.Callback

@@ -67,12 +67,15 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val adress = adressRepository.searchAdress(cep)
-                    _toast.postValue(
-                        adress.bairro + " - " + adress.cep + " - " + adress.cidade +
-                                " - " + adress.rua + " - " + adress.uf
-                    )
-                    //onFillFields()
+                    adressRepository.searchAdress(cep).let {
+                        if (it.cep.isNullOrEmpty()) {
+                            _toast.postValue(
+                                context.getString(R.string.nao_foi_possivel_localizar)
+                            )
+                        } else {
+                            onFillFields(it)
+                        }
+                    }
                 } catch (ex: Exception) {
                     Log.e(TAG, context.getString(R.string.exception) + ex.message)
                     _error.postValue(

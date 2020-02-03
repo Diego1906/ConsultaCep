@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">@string/consulta_por_endereco</string>
-    <string name="consulta_por_endereco">Consulta Endereço</string>
+    <string name="app_name">Consulta Cep</string>
+    <string name="consulta">Consulta</string>
+    <string name="consulta_por_endereco">Consulta por Endereço</string>
+    <string name="consulta_por_cep">Consulta por Cep</string>
     <string name="preencha_o_cep">Preencha o campo do cep</string>
     <string name="digite_cep_completo">Digite o cep com 8 dígitos</string>
     <string name="digite_o_cep_aqui">Digite o cep aqui</string>
@@ -11,8 +13,50 @@
     <string name="cidade">Cidade</string>
     <string name="uf">UF</string>
     <string name="icone_da_tela_incial">Icone da tela incial</string>
-    <string name="consulta_por_cep">Consulta por Cep</string>
     <string name="exception">Exception: </string>
     <string name="nao_foi_possivel_consultar_cep">Não foi possível consultar o Cep. Houve um erro inesperado: </string>
     <string name="endereco">Endereço</string>
+    <string name="selecione_um_estado">Selecione um Estado:</string>
+    <string name="digite_o_nome_da_cidade_aqui">Digite o nome da cidade aqui</string>
+    <string name="digite_o_nome_da_rua_aqui">Digite o nome da rua aqui</string>
+    <string name="error_500">Erro ao acessar nossos serviços. Tente novamente mais tarde.</string>
+    <string name="generic_error_remote">Erro desconhecido, tente mais tarde.</string>
+    <string name="nao_foi_possivel_localizar">Não foi possível localizar ao menos um endereço com as informações fornecidas.
+        Verifique se as informações inseridas estão corretas e faça uma nova pesquisa.</string>
+    <string name="erro_inesperado">Houve um erro inesperado. Motivo:</string>
+
+    <string-array name="Estados">
+        <item>AC</item>
+        <item>AL</item>
+        <item>AM</item>
+        <item>AP</item>
+        <item>BA</item>
+        <item>CE</item>
+        <item>DF</item>
+        <item>ES</item>
+        <item>GO</item>
+        <item>MA</item>
+        <item>MG</item>
+        <item>MS</item>
+        <item>MT</item>
+        <item>PA</item>
+        <item>PB</item>
+        <item>PE</item>
+        <item>PI</item>
+        <item>PR</item>
+        <item>RJ</item>
+        <item>RN</item>
+        <item>RO</item>
+        <item>RR</item>
+        <item>RS</item>
+        <item>SC</item>
+        <item>SE</item>
+        <item>SP</item>
+        <item>TO</item>
+    </string-array>
+
 </resources>
+
+
+
+

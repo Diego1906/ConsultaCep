@@ -11,7 +11,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_start.*
 import livroandroid.com.consulta.util.setTitle
 
-
 class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreateView(
@@ -24,7 +23,7 @@ class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedL
     override fun onStart() {
         super.onStart()
 
-        this.setTitle(getString(R.string.consulta_por_endereco))
+        setTitle(getString(R.string.consulta))
 
         bottom_navigation.setOnNavigationItemSelectedListener(this)
     }
@@ -37,6 +36,9 @@ class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedL
                 )
             }
             R.id.menu_endereco -> {
+                this.findNavController().navigate(
+                    StartFragmentDirections.actionStartFragmentToEnderecoFragment()
+                )
             }
         }
         return true

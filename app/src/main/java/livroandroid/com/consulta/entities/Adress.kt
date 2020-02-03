@@ -1,4 +1,4 @@
-package livroandroid.com.consulta.cep.entities
+package livroandroid.com.consulta.entities
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

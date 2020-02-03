@@ -11,7 +11,6 @@ class RetroFitConfig {
     init {
         retrofit = Retrofit.Builder()
             .baseUrl(URL_BASE)
-            //.addCallAdapterFactory(MyCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

@@ -1,11 +1,94 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="StyleViewForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen_1dp</item>
+        <item name="android:background">@android:color/darker_gray</item>
+    </style>
+
+    <style name="StyleLabelForm">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlueGray700</item>
+    </style>
+
+    <style name="StyleLabelForm2" parent="StyleLabelForm">
+        <item name="android:layout_marginTop">@dimen/dimen_8dp</item>
+    </style>
+
+    <style name="StyleTextViewForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dimen_2dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="StyleInputTextForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen_8dp</item>
+        <item name="android:textColorHint">@color/colorBlueGray700</item>
+    </style>
+
+    <style name="StyleButtonPesquisar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen_64dp</item>
+        <item name="android:text">@string/pesquisar</item>
+        <item name="android:layout_marginStart">@dimen/dimen_8dp</item>
+        <item name="android:layout_marginEnd">@dimen/dimen_8dp</item>
+        <item name="android:background">@color/colorPrimaryLight</item>
+        <item name="android:textColor">@color/colorBlueGray700</item>
+    </style>
+
+    <style name="StyleLinerLayoutForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/dimen_8dp</item>
+    </style>
+
+    <style name="StyleCardViewForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dimen_8dp</item>
+        <item name="android:layout_marginStart">@dimen/dimen_8dp</item>
+        <item name="android:layout_marginEnd">@dimen/dimen_8dp</item>
+        <item name="android:layout_marginBottom">@dimen/dimen_8dp</item>
+        <item name="android:elevation">@dimen/dimen_4dp</item>
+    </style>
+
+    <style name="StyleInputEditTextForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="StyleInputEditTextFormWords" parent="StyleInputEditTextForm">
+        <item name="android:inputType">textCapWords</item>
+    </style>
+
+    <style name="StyleProgressBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/dimen_16dp</item>
+    </style>
+
+    <style name="StyleConstraintLayoutForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorSecondaryLight</item>
+    </style>
+
 </resources>
+
+

@@ -62,7 +62,6 @@ class EnderecoFragment : Fragment() {
                 adapter.listAdress = it
             }
         })
-
         return inflater.inflate(R.layout.fragment_endereco, container, false)
     }
 

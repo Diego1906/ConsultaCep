@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_cep_form"
-    style="@style/StyleCardViewForm" >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout style="@style/StyleLinerLayoutForm">
+    <data>
 
-        <TextView
-            style="@style/StyleLabelForm"
-            android:text="@string/cep" />
+        <variable
+            name="adress"
+            type="livroandroid.com.consulta.entities.Adress" />
 
-        <View style="@style/StyleViewForm" />
+    </data>
 
-        <TextView
-            android:id="@+id/txt_cep_item"
-            style="@style/StyleTextViewForm"
-            tools:text="01311-922" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_cep_form"
+        style="@style/StyleCardViewForm">
 
-        <TextView
-            style="@style/StyleLabelForm2"
-            android:text="@string/rua" />
+        <LinearLayout style="@style/StyleLinerLayoutForm">
 
-        <View style="@style/StyleViewForm" />
+            <TextView
+                style="@style/StyleLabelForm"
+                android:text="@string/cep" />
 
-        <TextView
-            android:id="@+id/txt_rua_item"
-            style="@style/StyleTextViewForm"
-            tools:text="Avenida Paulista" />
+            <View style="@style/StyleViewForm" />
 
-        <TextView
-            style="@style/StyleLabelForm2"
-            android:text="@string/bairro" />
+            <TextView
+                android:id="@+id/txt_cep_item"
+                style="@style/StyleTextViewForm"
+                android:text="@{adress.cep}"
+                tools:text="01311-922" />
 
-        <View style="@style/StyleViewForm" />
+            <TextView
+                style="@style/StyleLabelForm2"
+                android:text="@string/rua" />
 
-        <TextView
-            android:id="@+id/txt_bairro_item"
-            style="@style/StyleTextViewForm"
-            tools:text="Bela Vista" />
+            <View style="@style/StyleViewForm" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txt_rua_item"
+                style="@style/StyleTextViewForm"
+                android:text="@{adress.rua}"
+                tools:text="Avenida Paulista" />
 
-</androidx.cardview.widget.CardView>
+            <TextView
+                style="@style/StyleLabelForm2"
+                android:text="@string/bairro" />
+
+            <View style="@style/StyleViewForm" />
+
+            <TextView
+                android:id="@+id/txt_bairro_item"
+                style="@style/StyleTextViewForm"
+                android:text="@{adress.bairro}"
+                tools:text="Bela Vista" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
 

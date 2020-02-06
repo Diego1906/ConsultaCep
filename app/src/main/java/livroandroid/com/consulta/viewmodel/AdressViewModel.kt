@@ -73,7 +73,7 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
                                 context.getString(R.string.nao_foi_possivel_localizar)
                             )
                         } else {
-                            onFillFields(it)
+                            onFillFieldsBackgroundThread(it)
                         }
                     }
                 } catch (ex: Exception) {
@@ -109,7 +109,7 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
         _uf.value = null
     }
 
-    private fun onFillFields(adress: Adress) {
+    private fun onFillFieldsBackgroundThread(adress: Adress) {
         _cep.postValue(adress.cep)
         _rua.postValue(adress.rua)
         _bairro.postValue(adress.bairro)

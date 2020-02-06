@@ -28,7 +28,7 @@ class EnderecoFragment : Fragment() {
     private lateinit var cidade: String
     private lateinit var rua: String
 
-    private val adapter by lazy {
+    private val adapterListEndereco by lazy {
         ListEnderecoAdapter()
     }
 
@@ -59,7 +59,7 @@ class EnderecoFragment : Fragment() {
 
         adressViewModel.listEndereco.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.listAdress = it
+                adapterListEndereco.submitList(it)
             }
         })
         return inflater.inflate(R.layout.fragment_endereco, container, false)
@@ -81,9 +81,8 @@ class EnderecoFragment : Fragment() {
 
     private fun onSetupRecyclerView() {
         recyclerView?.apply {
-            this.layoutManager =
-                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            this.adapter = adapter
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            adapter = adapterListEndereco
         }
     }
 

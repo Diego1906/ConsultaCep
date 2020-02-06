@@ -3,29 +3,22 @@ package livroandroid.com.consulta.endereco.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_endereco.view.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.entities.Adress
 
-class ListEnderecoAdapter : RecyclerView.Adapter<ListEnderecoAdapter.ItemHolder>() {
-
-    var listAdress = listOf<Adress>()
-        set(value) {
-            if (field != value) {
-                field = value
-                notifyDataSetChanged()
-            }
-        }
+class ListEnderecoAdapter :
+    ListAdapter<Adress, ListEnderecoAdapter.ItemHolder>(AdressDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder.from(parent)
     }
 
-    override fun getItemCount() = listAdress.size
-
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        val item = listAdress[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
@@ -45,5 +38,15 @@ class ListEnderecoAdapter : RecyclerView.Adapter<ListEnderecoAdapter.ItemHolder>
                 return ItemHolder(view)
             }
         }
+    }
+}
+
+class AdressDiffCallBack : DiffUtil.ItemCallback<Adress>() {
+    override fun areItemsTheSame(oldItem: Adress, newItem: Adress): Boolean {
+        return oldItem.cep == newItem.cep
+    }
+
+    override fun areContentsTheSame(oldItem: Adress, newItem: Adress): Boolean {
+        return oldItem == newItem
     }
 }

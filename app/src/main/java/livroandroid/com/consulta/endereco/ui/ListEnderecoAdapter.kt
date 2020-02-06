@@ -1,13 +1,11 @@
 package livroandroid.com.consulta.endereco.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_endereco.view.*
-import livroandroid.com.consulta.R
+import livroandroid.com.consulta.databinding.ItemEnderecoBinding
 import livroandroid.com.consulta.entities.Adress
 
 class ListEnderecoAdapter :
@@ -22,20 +20,19 @@ class ListEnderecoAdapter :
         holder.bind(item)
     }
 
-    class ItemHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ItemHolder private constructor(val binding: ItemEnderecoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Adress) {
-            itemView.txt_cep_item.text = item.cep
-            itemView.txt_rua_item.text = item.rua
-            itemView.txt_bairro_item.text = item.bairro
+            binding.adress = item
+            binding.executePendingBindings()
         }
 
         companion object {
             fun from(parent: ViewGroup): ItemHolder {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_endereco, parent, false)
-
-                return ItemHolder(view)
+                val inflater = LayoutInflater.from(parent.context)
+                val binding = ItemEnderecoBinding.inflate(inflater, parent, false)
+                return ItemHolder(binding)
             }
         }
     }

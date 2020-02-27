@@ -8,22 +8,20 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_endereco.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.network.RetroFitConfig
-import livroandroid.com.consulta.repository.AdressRepository
 import livroandroid.com.consulta.util.SnackBarShow
 import livroandroid.com.consulta.util.Toast
 import livroandroid.com.consulta.util.setTitle
 import livroandroid.com.consulta.viewmodel.AdressViewModel
-import livroandroid.com.consulta.viewmodel.AdressViewModelFactory
+import org.koin.android.ext.android.inject
 
 class EnderecoFragment : Fragment() {
 
-    private lateinit var adressViewModel: AdressViewModel
+    private val viewModel: AdressViewModel by inject()
+
     private lateinit var uf: String
     private lateinit var cidade: String
     private lateinit var rua: String
@@ -38,26 +36,19 @@ class EnderecoFragment : Fragment() {
     ): View? {
         val application = requireNotNull(activity).application
 
-        val repository = AdressRepository(RetroFitConfig(), application)
-
-        val viewModelFactory = AdressViewModelFactory(repository)
-
-        adressViewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(AdressViewModel::class.java)
-
-        adressViewModel.snackbar.observe(viewLifecycleOwner, Observer {
+        viewModel.snackbar.observe(viewLifecycleOwner, Observer {
             it.SnackBarShow(this.requireView())
         })
 
-        adressViewModel.toast.observe(viewLifecycleOwner, Observer {
+        viewModel.toast.observe(viewLifecycleOwner, Observer {
             it.Toast(application)
         })
 
-        adressViewModel.error.observe(viewLifecycleOwner, Observer {
+        viewModel.error.observe(viewLifecycleOwner, Observer {
             it.Toast(application)
         })
 
-        adressViewModel.listEndereco.observe(viewLifecycleOwner, Observer {
+        viewModel.listEndereco.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapterListEndereco.submitList(it)
             }
@@ -113,7 +104,7 @@ class EnderecoFragment : Fragment() {
             if (onValidateFields())
                 return@setOnClickListener
 
-            adressViewModel.onSearchListAdress(uf, cidade, rua)
+            viewModel.onSearchListAdress(uf, cidade, rua)
         }
     }
 
@@ -122,10 +113,10 @@ class EnderecoFragment : Fragment() {
         rua = edit_text_rua.editableText.toString()
 
         if (cidade.isEmpty()) {
-            adressViewModel.onSnackbarShown("Preencha o campo cidade")
+            viewModel.onSnackbarShown("Preencha o campo cidade")
             return true
         } else if (rua.isEmpty()) {
-            adressViewModel.onSnackbarShown("Preencha o campo rua")
+            viewModel.onSnackbarShown("Preencha o campo rua")
             return true
         }
         return false

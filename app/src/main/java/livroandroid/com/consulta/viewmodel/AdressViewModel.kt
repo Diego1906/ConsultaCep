@@ -1,20 +1,25 @@
 package livroandroid.com.consulta.viewmodel
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.entities.Adress
 import livroandroid.com.consulta.repository.AdressRepository
 
-class AdressViewModel(private val adressRepository: AdressRepository) : ViewModel() {
+class AdressViewModel(
+    private val repository: AdressRepository,
+    application: Application
+) :
+    AndroidViewModel(application) {
 
     private val TAG = javaClass.simpleName
 
     private val context by lazy {
-        adressRepository.application
+        getApplication<Application>()
     }
 
     private val viewModelJob = Job()
@@ -67,7 +72,7 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    adressRepository.searchAdress(cep).let {
+                    repository.searchAdress(cep).let {
                         if (it.cep.isNullOrEmpty()) {
                             _toast.postValue(
                                 context.getString(R.string.nao_foi_possivel_localizar)
@@ -77,9 +82,9 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
                         }
                     }
                 } catch (ex: Exception) {
-                    Log.e(TAG, context.getString(R.string.exception) + ex.message)
+                    Log.e(TAG, "${context.getString(R.string.exception)} ${ex.message}")
                     _error.postValue(
-                        context.getString(R.string.nao_foi_possivel_consultar_cep) + ex.message
+                        "${context.getString(R.string.nao_foi_possivel_consultar_cep)} ${ex.message}"
                     )
                 }
             }
@@ -88,16 +93,20 @@ class AdressViewModel(private val adressRepository: AdressRepository) : ViewMode
     }
 
     fun onSearchListAdress(uf: String, cidade: String, rua: String) {
-        try {
-            adressRepository.searchListAdress(uf, cidade, rua).let {
-                if (it.isNotEmpty())
-                    _listEndereco.value = it
-                else
-                    _toast.value = context.getString(R.string.nao_foi_possivel_localizar)
+        uiScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    repository.searchListAdress(uf, cidade, rua).let {
+                        if (it.isNotEmpty())
+                            _listEndereco.postValue(it)
+                        else
+                            _toast.postValue(context.getString(R.string.nao_foi_possivel_localizar))
+                    }
+                } catch (ex: Exception) {
+                    Log.e(TAG, "${context.getString(R.string.exception)} ${ex.message}")
+                    _error.postValue("${context.getString(R.string.erro_inesperado)} ${ex.message}")
+                }
             }
-        } catch (ex: Exception) {
-            Log.e(TAG, context.getString(R.string.exception) + ex.message)
-            _error.value = context.getString(R.string.erro_inesperado) + ex.message
         }
     }
 

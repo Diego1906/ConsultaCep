@@ -1,4 +1,4 @@
-package livroandroid.com.consulta.endereco.ui
+package livroandroid.com.consulta.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_endereco.*
 import livroandroid.com.consulta.R
+import livroandroid.com.consulta.ui.adapter.ListEnderecoAdapter
 import livroandroid.com.consulta.util.SnackBarShow
 import livroandroid.com.consulta.util.Toast
 import livroandroid.com.consulta.util.setTitle

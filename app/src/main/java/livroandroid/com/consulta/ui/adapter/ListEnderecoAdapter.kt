@@ -1,4 +1,4 @@
-package livroandroid.com.consulta.endereco.ui
+package livroandroid.com.consulta.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +9,14 @@ import livroandroid.com.consulta.databinding.ItemEnderecoBinding
 import livroandroid.com.consulta.entities.Adress
 
 class ListEnderecoAdapter :
-    ListAdapter<Adress, ListEnderecoAdapter.ItemHolder>(AdressDiffCallBack()) {
+    ListAdapter<Adress, ListEnderecoAdapter.ItemHolder>(
+        AdressDiffCallBack()
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder.from(parent)
+        return ItemHolder.from(
+            parent
+        )
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
@@ -32,7 +36,9 @@ class ListEnderecoAdapter :
             fun from(parent: ViewGroup): ItemHolder {
                 val inflater = LayoutInflater.from(parent.context)
                 val binding = ItemEnderecoBinding.inflate(inflater, parent, false)
-                return ItemHolder(binding)
+                return ItemHolder(
+                    binding
+                )
             }
         }
     }

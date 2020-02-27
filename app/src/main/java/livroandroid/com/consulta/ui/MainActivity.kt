@@ -1,7 +1,8 @@
-package livroandroid.com.consulta
+package livroandroid.com.consulta.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import livroandroid.com.consulta.R
 import livroandroid.com.consulta.di.appModuleViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.KoinComponent

@@ -1,4 +1,4 @@
-package livroandroid.com.consulta
+package livroandroid.com.consulta.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.fragment_start.*
+import livroandroid.com.consulta.R
+
 import livroandroid.com.consulta.util.setTitle
 
 class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedListener {

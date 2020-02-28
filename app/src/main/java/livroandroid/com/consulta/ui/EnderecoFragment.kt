@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_endereco.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.ui.adapter.ListEnderecoAdapter
-import livroandroid.com.consulta.util.SnackBarShow
-import livroandroid.com.consulta.util.Toast
 import livroandroid.com.consulta.util.setTitle
+import livroandroid.com.consulta.util.snackBarShow
+import livroandroid.com.consulta.util.toastShow
 import livroandroid.com.consulta.viewmodel.AdressViewModel
 import org.koin.android.ext.android.inject
 
@@ -38,15 +38,15 @@ class EnderecoFragment : Fragment() {
         val application = requireNotNull(activity).application
 
         viewModel.snackbar.observe(viewLifecycleOwner, Observer {
-            it.SnackBarShow(this.requireView())
+            it.snackBarShow(this.requireView())
         })
 
         viewModel.toast.observe(viewLifecycleOwner, Observer {
-            it.Toast(application)
+            it.toastShow(application)
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer {
-            it.Toast(application)
+            it.toastShow(application)
         })
 
         viewModel.listEndereco.observe(viewLifecycleOwner, Observer {

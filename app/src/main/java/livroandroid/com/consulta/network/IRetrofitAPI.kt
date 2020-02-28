@@ -4,7 +4,7 @@ import livroandroid.com.consulta.entities.Adress
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface RetrofitAPI {
+interface IRetrofitAPI {
     @GET("{cep}/json/")
     suspend fun getRemoteAdress(@Path("cep") cep: String): Adress
 

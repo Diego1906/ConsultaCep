@@ -8,13 +8,11 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.entities.Adress
-import livroandroid.com.consulta.repository.AdressRepository
+import livroandroid.com.consulta.repository.IRepository
 
 class AdressViewModel(
-    private val repository: AdressRepository,
-    application: Application
-) :
-    AndroidViewModel(application) {
+    private val repository: IRepository, application: Application
+) : AndroidViewModel(application) {
 
     private val TAG = javaClass.simpleName
 

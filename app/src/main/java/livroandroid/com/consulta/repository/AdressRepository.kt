@@ -1,16 +1,16 @@
 package livroandroid.com.consulta.repository
 
 import livroandroid.com.consulta.entities.Adress
-import livroandroid.com.consulta.network.RetroFitConfig
+import livroandroid.com.consulta.network.IService
 
-class AdressRepository(private val network: RetroFitConfig) {
+class AdressRepository(private val service: IService) : IRepository {
 
-    suspend fun searchAdress(cep: String): Adress {
-        return network.getService().getRemoteAdress(cep)
+    override suspend fun searchAdress(cep: String): Adress {
+        return service.getService().getRemoteAdress(cep)
     }
 
-    suspend fun searchListAdress(uf: String, cidade: String, rua: String): List<Adress> {
-        return network.getService().getRemoteListAdress(uf, cidade, rua)
+    override suspend fun searchListAdress(uf: String, cidade: String, rua: String): List<Adress> {
+        return service.getService().getRemoteListAdress(uf, cidade, rua)
     }
 }
 

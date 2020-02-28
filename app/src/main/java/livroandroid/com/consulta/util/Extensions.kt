@@ -11,10 +11,10 @@ fun Fragment.setTitle(title: String) {
     (activity as AppCompatActivity).supportActionBar?.title = title
 }
 
-fun String.Toast(context: Context) {
+fun String.toastShow(context: Context) {
     Toast.makeText(context, this, Toast.LENGTH_LONG).show()
 }
 
-fun String.SnackBarShow(view: View) {
+fun String.snackBarShow(view: View) {
     Snackbar.make(view, this, Snackbar.LENGTH_SHORT).show()
 }

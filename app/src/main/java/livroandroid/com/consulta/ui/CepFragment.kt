@@ -11,8 +11,8 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_cep.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.databinding.FragmentCepBinding
-import livroandroid.com.consulta.util.Toast
 import livroandroid.com.consulta.util.setTitle
+import livroandroid.com.consulta.util.toastShow
 import livroandroid.com.consulta.viewmodel.AdressViewModel
 import org.koin.android.ext.android.inject
 
@@ -46,11 +46,11 @@ class CepFragment : Fragment() {
         })
 
         viewModel.toast.observe(viewLifecycleOwner, Observer {
-            it.Toast(application)
+            it.toastShow(application)
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer {
-            it.Toast(application)
+            it.toastShow(application)
         })
 
         return binding.root

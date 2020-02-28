@@ -3,7 +3,7 @@ package livroandroid.com.consulta.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetroFitConfig {
+class RetroFitConfig : IService {
 
     private var retrofit: Retrofit
     private val URL_BASE = "https://viacep.com.br/ws/"
@@ -15,7 +15,7 @@ class RetroFitConfig {
             .build()
     }
 
-    fun getService(): RetrofitAPI {
-        return retrofit.create(RetrofitAPI::class.java)
-    }
+    override fun getService(): IRetrofitAPI {
+    return retrofit.create(IRetrofitAPI::class.java)
+}
 }

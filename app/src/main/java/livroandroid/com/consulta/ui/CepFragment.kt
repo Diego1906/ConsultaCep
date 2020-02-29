@@ -11,14 +11,12 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_cep.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.databinding.FragmentCepBinding
-import livroandroid.com.consulta.entities.Adress
 import livroandroid.com.consulta.util.onHideKeyboard
-import livroandroid.com.consulta.util.setTitle
 import livroandroid.com.consulta.util.onToastShow
+import livroandroid.com.consulta.util.setTitle
 import livroandroid.com.consulta.viewmodel.AdressViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-const val CEP = "cep"
 const val LENGHT_CEP = 8
 
 class CepFragment : Fragment() {
@@ -62,19 +60,11 @@ class CepFragment : Fragment() {
             }
         })
 
-        savedInstanceState?.let { bundle ->
-            bundle.getSerializable(CEP)?.let {
-                viewModel.onFillFields(it as Adress)
-            }
-        }
-
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        this.setTitle(getString(R.string.consulta_por_cep))
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         btn_search.setOnClickListener {
             val cep = txt_cep_search.editableText.toString()
@@ -93,8 +83,9 @@ class CepFragment : Fragment() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putSerializable(CEP, viewModel.adress.value)
-        super.onSaveInstanceState(outState)
+    override fun onStart() {
+        super.onStart()
+
+        this.setTitle(getString(R.string.consulta_por_cep))
     }
 }

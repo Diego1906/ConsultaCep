@@ -58,13 +58,13 @@ class AdressViewModel(
     val toast: LiveData<String>
         get() = _toast
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String>
-        get() = _error
+    private val _listAdress = MutableLiveData<List<Adress>>()
+    val listAdress: LiveData<List<Adress>>
+        get() = _listAdress
 
-    private val _listEndereco = MutableLiveData<List<Adress>>()
-    val listEndereco: LiveData<List<Adress>>
-        get() = _listEndereco
+    private val _adress = MutableLiveData<Adress>()
+    val adress: LiveData<Adress>
+        get() = _adress
 
     fun onSearchAdress(cep: String) {
         uiScope.launch {
@@ -76,12 +76,12 @@ class AdressViewModel(
                                 context.getString(R.string.nao_foi_possivel_localizar)
                             )
                         } else {
-                            onFillFieldsBackgroundThread(it)
+                            _adress.postValue(it)
                         }
                     }
                 } catch (ex: Exception) {
                     Log.e(TAG, "${context.getString(R.string.exception)} ${ex.message}")
-                    _error.postValue(
+                    _toast.postValue(
                         "${context.getString(R.string.nao_foi_possivel_consultar_cep)} ${ex.message}"
                     )
                 }
@@ -96,13 +96,13 @@ class AdressViewModel(
                 try {
                     repository.searchListAdress(uf, cidade, rua).let {
                         if (it.isNotEmpty())
-                            _listEndereco.postValue(it)
+                            _listAdress.postValue(it)
                         else
                             _toast.postValue(context.getString(R.string.nao_foi_possivel_localizar))
                     }
                 } catch (ex: Exception) {
                     Log.e(TAG, "${context.getString(R.string.exception)} ${ex.message}")
-                    _error.postValue("${context.getString(R.string.erro_inesperado)} ${ex.message}")
+                    _toast.postValue("${context.getString(R.string.erro_inesperado)} ${ex.message}")
                 }
             }
         }
@@ -114,9 +114,12 @@ class AdressViewModel(
         _bairro.value = null
         _cidade.value = null
         _uf.value = null
+        _progressBar.value = null
+        _snackBar.value = null
+        _toast.value = null
     }
 
-    private fun onFillFieldsBackgroundThread(adress: Adress) {
+    fun onFillFields(adress: Adress) {
         _cep.postValue(adress.cep)
         _rua.postValue(adress.rua)
         _bairro.postValue(adress.bairro)

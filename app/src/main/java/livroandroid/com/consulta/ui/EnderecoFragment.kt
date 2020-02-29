@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.fragment_endereco.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.ui.adapter.ListEnderecoAdapter
 import livroandroid.com.consulta.util.setTitle
-import livroandroid.com.consulta.util.snackBarShow
-import livroandroid.com.consulta.util.toastShow
+import livroandroid.com.consulta.util.onSnackBarShow
+import livroandroid.com.consulta.util.onToastShow
 import livroandroid.com.consulta.viewmodel.AdressViewModel
 import org.koin.android.ext.android.inject
 
@@ -38,18 +38,14 @@ class EnderecoFragment : Fragment() {
         val application = requireNotNull(activity).application
 
         viewModel.snackbar.observe(viewLifecycleOwner, Observer {
-            it.snackBarShow(this.requireView())
+            it.onSnackBarShow(this.requireView())
         })
 
         viewModel.toast.observe(viewLifecycleOwner, Observer {
-            it.toastShow(application)
+            it.onToastShow(application)
         })
 
-        viewModel.error.observe(viewLifecycleOwner, Observer {
-            it.toastShow(application)
-        })
-
-        viewModel.listEndereco.observe(viewLifecycleOwner, Observer {
+        viewModel.listAdress.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapterListEndereco.submitList(it)
             }

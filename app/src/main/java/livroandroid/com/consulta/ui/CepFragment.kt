@@ -67,19 +67,20 @@ class CepFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_search.setOnClickListener {
-            val cep = txt_cep_search.editableText.toString()
-            if (cep.isEmpty()) {
-                viewModel.onSnackbarShown(getString(R.string.preencha_o_cep))
-                return@setOnClickListener
-            } else if (cep.length < LENGHT_CEP) {
-                viewModel.onSnackbarShown(getString(R.string.digite_cep_completo))
-                return@setOnClickListener
+            txt_cep_search.editableText.toString().let { cep ->
+                if (cep.isEmpty() || cep.length < LENGHT_CEP) {
+                    if (cep.isEmpty()) {
+                        viewModel.onSnackbarShown(getString(R.string.preencha_o_cep))
+                    } else {
+                        viewModel.onSnackbarShown(getString(R.string.digite_cep_completo))
+                    }
+                    return@setOnClickListener
+                }
+                onHideKeyboard()
+                viewModel.onCleanFields()
+                viewModel.onProgressBarShown(true)
+                viewModel.onSearchAdress(cep)
             }
-
-            onHideKeyboard()
-            viewModel.onCleanFields()
-            viewModel.onProgressBarShown(true)
-            viewModel.onSearchAdress(cep)
         }
     }
 

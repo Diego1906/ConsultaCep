@@ -27,15 +27,13 @@ class CepFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val binding = DataBindingUtil.inflate<FragmentCepBinding>(
-            inflater,
-            R.layout.fragment_cep,
-            container,
-            false
-        ).apply {
-            adressViewModel = viewModel
-            setLifecycleOwner(viewLifecycleOwner)
-        }
+            inflater, R.layout.fragment_cep, container, false
+        )
+
+        binding.viewModel = viewModel
+        binding.setLifecycleOwner(viewLifecycleOwner)
 
         viewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
@@ -70,15 +68,15 @@ class CepFragment : Fragment() {
             txt_cep_search.editableText.toString().let { cep ->
                 if (cep.isEmpty() || cep.length < LENGHT_CEP) {
                     if (cep.isEmpty()) {
-                        viewModel.onSnackbarShown(getString(R.string.preencha_o_cep))
+                        viewModel.onSnackbarShow(getString(R.string.preencha_o_cep))
                     } else {
-                        viewModel.onSnackbarShown(getString(R.string.digite_cep_completo))
+                        viewModel.onSnackbarShow(getString(R.string.digite_cep_completo))
                     }
                     return@setOnClickListener
                 }
                 onHideKeyboard()
                 viewModel.onCleanFields()
-                viewModel.onProgressBarShown(true)
+                viewModel.onProgressBarShow(true)
                 viewModel.onSearchAdress(cep)
             }
         }

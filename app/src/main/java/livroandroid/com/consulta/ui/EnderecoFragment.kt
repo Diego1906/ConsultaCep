@@ -6,22 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_endereco.*
 import livroandroid.com.consulta.R
+import livroandroid.com.consulta.databinding.FragmentEnderecoBinding
 import livroandroid.com.consulta.ui.adapter.ListEnderecoAdapter
-import livroandroid.com.consulta.util.setTitle
+import livroandroid.com.consulta.util.onHideKeyboard
 import livroandroid.com.consulta.util.onSnackBarShow
 import livroandroid.com.consulta.util.onToastShow
+import livroandroid.com.consulta.util.setTitle
 import livroandroid.com.consulta.viewmodel.AdressViewModel
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EnderecoFragment : Fragment() {
 
-    private val viewModel: AdressViewModel by inject()
+    private val viewModel: AdressViewModel by viewModel()
 
     private lateinit var uf: String
     private lateinit var cidade: String
@@ -35,14 +38,24 @@ class EnderecoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val application = requireNotNull(activity).application
+
+        val binding = DataBindingUtil.inflate<FragmentEnderecoBinding>(
+            inflater, R.layout.fragment_endereco, container, false
+        )
+
+        binding.viewModel = viewModel
+        binding.setLifecycleOwner(viewLifecycleOwner)
 
         viewModel.snackbar.observe(viewLifecycleOwner, Observer {
-            it.onSnackBarShow(this.requireView())
+            it?.onSnackBarShow(this.requireView())
         })
 
-        viewModel.toast.observe(viewLifecycleOwner, Observer {
-            it.onToastShow(application)
+        viewModel.toast.observe(viewLifecycleOwner, Observer { msg ->
+            msg?.let {
+                view?.context?.let { context ->
+                    it.onToastShow(context)
+                }
+            }
         })
 
         viewModel.listAdress.observe(viewLifecycleOwner, Observer {
@@ -50,13 +63,11 @@ class EnderecoFragment : Fragment() {
                 adapterListEndereco.submitList(it)
             }
         })
-        return inflater.inflate(R.layout.fragment_endereco, container, false)
+        return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        setTitle(getString(R.string.consulta_por_endereco))
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         onSetupRecyclerView()
 
@@ -65,6 +76,12 @@ class EnderecoFragment : Fragment() {
         onItemSelectedListenerSpinner()
 
         onSetOnClickListener()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        setTitle(getString(R.string.consulta_por_endereco))
     }
 
     private fun onSetupRecyclerView() {
@@ -97,25 +114,36 @@ class EnderecoFragment : Fragment() {
     }
 
     private fun onSetOnClickListener() {
-        btn_pesquisar_endereco.setOnClickListener {
-            if (onValidateFields())
+        btnSearchListAdress.setOnClickListener {
+            if (onValidateFields().not())
                 return@setOnClickListener
 
+            onHideKeyboard()
+            viewModel.onCleanFields()
+            viewModel.onProgressBarShow(true)
             viewModel.onSearchListAdress(uf, cidade, rua)
         }
     }
 
     private fun onValidateFields(): Boolean {
-        cidade = edit_text_cidade.editableText.toString()
-        rua = edit_text_rua.editableText.toString()
-
-        if (cidade.isEmpty()) {
-            viewModel.onSnackbarShown("Preencha o campo cidade")
-            return true
-        } else if (rua.isEmpty()) {
-            viewModel.onSnackbarShown("Preencha o campo rua")
-            return true
+        edit_text_cidade.editableText.toString().let {
+            if (it.isEmpty()) {
+                return onShowMsg(getString(R.string.preencha_campo_cidade))
+            }
+            cidade = it
         }
+
+        edit_text_rua.editableText.toString().let {
+            if (it.isEmpty()) {
+                return onShowMsg(getString(R.string.preencha_campo_rua))
+            }
+            rua = it
+        }
+        return true
+    }
+
+    private fun onShowMsg(msg: String): Boolean {
+        viewModel.onSnackbarShow(msg)
         return false
     }
 }

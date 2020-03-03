@@ -86,7 +86,7 @@ class AdressViewModel(
                     )
                 }
             }
-            onProgressBarShown(false)
+            onProgressBarShow(false)
         }
     }
 
@@ -105,6 +105,7 @@ class AdressViewModel(
                     _toast.postValue("${context.getString(R.string.erro_inesperado)} ${ex.message}")
                 }
             }
+            onProgressBarShow(false)
         }
     }
 
@@ -132,11 +133,11 @@ class AdressViewModel(
         viewModelJob.cancel()
     }
 
-    fun onProgressBarShown(value: Boolean) {
+    fun onProgressBarShow(value: Boolean) {
         _progressBar.value = value
     }
 
-    fun onSnackbarShown(msg: String) {
+    fun onSnackbarShow(msg: String) {
         _snackBar.value = msg
     }
 }

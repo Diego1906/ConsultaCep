@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.ZipCodeFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="livroandroid.com.consulta.viewmodel.AdressViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView style="@style/StyleScrollView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_text"
+                style="@style/StyleInputTextForm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_cep_search"
+                    style="@style/StyleInputEditTextForm"
+                    android:hint="@string/digite_o_cep_aqui"
+                    android:inputType="number"
+                    android:maxLength="8" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_search"
+                style="@style/StyleButtonPesquisar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_text" />
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/progress_bar"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_margin="@dimen/dimen_8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_search"
+                bind:viewModel="@{viewModel}" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_cep"
+                style="@style/StyleCardViewForm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/include">
+
+                <LinearLayout style="@style/StyleLinerLayoutForm">
+
+                    <TextView
+                        style="@style/StyleLabelForm"
+                        android:text="@string/cep" />
+
+                    <View style="@style/StyleViewForm" />
+
+                    <TextView
+                        android:id="@+id/txt_cep"
+                        style="@style/StyleTextViewForm"
+                        android:text="@{viewModel.zipCode}"
+                        tools:text="08673230" />
+
+                    <TextView
+                        style="@style/StyleLabelForm2"
+                        android:text="@string/rua" />
+
+                    <View style="@style/StyleViewForm" />
+
+                    <TextView
+                        android:id="@+id/txt_rua"
+                        style="@style/StyleTextViewForm"
+                        android:text="@{viewModel.street}"
+                        tools:text="Tomisaburo Urano" />
+
+                    <TextView
+                        style="@style/StyleLabelForm2"
+                        android:text="@string/bairro" />
+
+                    <View style="@style/StyleViewForm" />
+
+                    <TextView
+                        android:id="@+id/txt_bairro"
+                        style="@style/StyleTextViewForm"
+                        android:text="@{viewModel.district}"
+                        tools:text="Vila Figueira" />
+
+                    <TextView
+                        style="@style/StyleLabelForm2"
+                        android:text="@string/cidade" />
+
+                    <View style="@style/StyleViewForm" />
+
+                    <TextView
+                        android:id="@+id/txt_cidade"
+                        style="@style/StyleTextViewForm"
+                        android:text="@{viewModel.city}"
+                        tools:text="Suzano" />
+
+                    <TextView
+                        style="@style/StyleLabelForm2"
+                        android:text="@string/uf" />
+
+                    <View style="@style/StyleViewForm" />
+
+                    <TextView
+                        android:id="@+id/txt_uf"
+                        style="@style/StyleTextViewForm"
+                        android:text="@{viewModel.state}"
+                        tools:text="SP" />
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

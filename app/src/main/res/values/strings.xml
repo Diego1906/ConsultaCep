@@ -24,6 +24,8 @@
     <string name="nao_foi_possivel_localizar">Não foi possível localizar ao menos um endereço com as informações fornecidas.
         Verifique se as informações inseridas estão corretas e faça uma nova pesquisa.</string>
     <string name="erro_inesperado">Houve um erro inesperado. Motivo: </string>
+    <string name="preencha_campo_rua">Preencha o campo rua</string>
+    <string name="preencha_campo_cidade">Preencha o campo cidade</string>
 
     <string-array name="Estados">
         <item>AC</item>

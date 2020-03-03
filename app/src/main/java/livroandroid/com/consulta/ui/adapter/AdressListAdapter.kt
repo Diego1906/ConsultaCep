@@ -5,18 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import livroandroid.com.consulta.databinding.ItemEnderecoBinding
+import livroandroid.com.consulta.databinding.ItemListAdressBinding
 import livroandroid.com.consulta.entities.Adress
 
-class ListEnderecoAdapter :
-    ListAdapter<Adress, ListEnderecoAdapter.ItemHolder>(
+class AdressListAdapter :
+    ListAdapter<Adress, AdressListAdapter.ItemHolder>(
         AdressDiffCallBack()
     ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder.from(
-            parent
-        )
+        return ItemHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
@@ -24,7 +22,7 @@ class ListEnderecoAdapter :
         holder.bind(item)
     }
 
-    class ItemHolder private constructor(val binding: ItemEnderecoBinding) :
+    class ItemHolder private constructor(val binding: ItemListAdressBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Adress) {
@@ -35,10 +33,8 @@ class ListEnderecoAdapter :
         companion object {
             fun from(parent: ViewGroup): ItemHolder {
                 val inflater = LayoutInflater.from(parent.context)
-                val binding = ItemEnderecoBinding.inflate(inflater, parent, false)
-                return ItemHolder(
-                    binding
-                )
+                val binding = ItemListAdressBinding.inflate(inflater, parent, false)
+                return ItemHolder(binding)
             }
         }
     }
@@ -46,7 +42,7 @@ class ListEnderecoAdapter :
 
 class AdressDiffCallBack : DiffUtil.ItemCallback<Adress>() {
     override fun areItemsTheSame(oldItem: Adress, newItem: Adress): Boolean {
-        return oldItem.cep == newItem.cep
+        return oldItem.zipCode == newItem.zipCode
     }
 
     override fun areContentsTheSame(oldItem: Adress, newItem: Adress): Boolean {

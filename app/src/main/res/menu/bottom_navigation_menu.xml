@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_cep"
+        android:id="@+id/menu_zip_code"
         android:icon="@drawable/ic_location_postal_code"
         android:title="@string/cep"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_endereco"
+        android:id="@+id/menu_adress"
         android:icon="@drawable/ic_location_adress"
         android:title="@string/endereco"
         app:showAsAction="always" />

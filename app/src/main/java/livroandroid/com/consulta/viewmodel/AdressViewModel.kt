@@ -17,7 +17,7 @@ class AdressViewModel(
     private val TAG = javaClass.simpleName
 
     private val context by lazy {
-        getApplication<Application>()
+        getApplication<Application>().baseContext
     }
 
     private val viewModelJob = Job()
@@ -26,25 +26,25 @@ class AdressViewModel(
         CoroutineScope(Dispatchers.Main + viewModelJob)
     }
 
-    private var _cep = MutableLiveData<String>()
-    val cep: LiveData<String>
-        get() = _cep
+    private var _zipCode = MutableLiveData<String>()
+    val zipCode: LiveData<String>
+        get() = _zipCode
 
-    private var _rua = MutableLiveData<String>()
-    val rua: LiveData<String>
-        get() = _rua
+    private var _street = MutableLiveData<String>()
+    val street: LiveData<String>
+        get() = _street
 
-    private var _bairro = MutableLiveData<String>()
-    val bairro: LiveData<String>
-        get() = _bairro
+    private var _district = MutableLiveData<String>()
+    val district: LiveData<String>
+        get() = _district
 
-    private var _cidade = MutableLiveData<String>()
-    val cidade: LiveData<String>
-        get() = _cidade
+    private var _city = MutableLiveData<String>()
+    val city: LiveData<String>
+        get() = _city
 
-    private var _uf = MutableLiveData<String>()
-    val uf: LiveData<String>
-        get() = _uf
+    private var _state = MutableLiveData<String>()
+    val state: LiveData<String>
+        get() = _state
 
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean>
@@ -71,7 +71,7 @@ class AdressViewModel(
             withContext(Dispatchers.IO) {
                 try {
                     repository.searchAdress(cep).let {
-                        if (it.cep.isNullOrEmpty()) {
+                        if (it.zipCode.isNullOrEmpty()) {
                             _toast.postValue(
                                 context.getString(R.string.nao_foi_possivel_localizar)
                             )
@@ -86,7 +86,7 @@ class AdressViewModel(
                     )
                 }
             }
-            onProgressBarShown(false)
+            onProgressBarShow(false)
         }
     }
 
@@ -105,26 +105,27 @@ class AdressViewModel(
                     _toast.postValue("${context.getString(R.string.erro_inesperado)} ${ex.message}")
                 }
             }
+            onProgressBarShow(false)
         }
     }
 
     fun onCleanFields() {
-        _cep.value = null
-        _rua.value = null
-        _bairro.value = null
-        _cidade.value = null
-        _uf.value = null
+        _zipCode.value = null
+        _street.value = null
+        _district.value = null
+        _city.value = null
+        _state.value = null
         _progressBar.value = null
         _snackBar.value = null
         _toast.value = null
     }
 
     fun onFillFields(adress: Adress) {
-        _cep.postValue(adress.cep)
-        _rua.postValue(adress.rua)
-        _bairro.postValue(adress.bairro)
-        _cidade.postValue(adress.cidade)
-        _uf.postValue(adress.uf)
+        _zipCode.postValue(adress.zipCode)
+        _street.postValue(adress.street)
+        _district.postValue(adress.district)
+        _city.postValue(adress.city)
+        _state.postValue(adress.state)
     }
 
     override fun onCleared() {
@@ -132,11 +133,11 @@ class AdressViewModel(
         viewModelJob.cancel()
     }
 
-    fun onProgressBarShown(value: Boolean) {
+    fun onProgressBarShow(value: Boolean) {
         _progressBar.value = value
     }
 
-    fun onSnackbarShown(msg: String) {
+    fun onSnackbarShow(msg: String) {
         _snackBar.value = msg
     }
 }

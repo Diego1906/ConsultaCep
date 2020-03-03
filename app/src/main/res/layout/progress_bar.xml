@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="livroandroid.com.consulta.viewmodel.AdressViewModel" />
+    </data>
+
+    <ProgressBar
+        style="@style/StyleProgressBar"
+        android:visibility="@{viewModel.progressBar ? View.VISIBLE : View.GONE}" />
+</layout>

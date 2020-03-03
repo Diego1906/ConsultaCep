@@ -8,18 +8,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_cep.*
+import kotlinx.android.synthetic.main.fragment_zip_code.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.databinding.FragmentCepBinding
+import livroandroid.com.consulta.databinding.FragmentZipCodeBinding
 import livroandroid.com.consulta.util.onHideKeyboard
 import livroandroid.com.consulta.util.onToastShow
 import livroandroid.com.consulta.util.setTitle
 import livroandroid.com.consulta.viewmodel.AdressViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-const val LENGHT_CEP = 8
+const val LENGHT_ZIP_CODE = 8
 
-class CepFragment : Fragment() {
+class ZipCodeFragment : Fragment() {
 
     private val viewModel: AdressViewModel by viewModel()
 
@@ -27,15 +27,13 @@ class CepFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentCepBinding>(
-            inflater,
-            R.layout.fragment_cep,
-            container,
-            false
-        ).apply {
-            adressViewModel = viewModel
-            setLifecycleOwner(viewLifecycleOwner)
-        }
+
+        val binding = DataBindingUtil.inflate<FragmentZipCodeBinding>(
+            inflater, R.layout.fragment_zip_code, container, false
+        )
+
+        binding.viewModel = viewModel
+        binding.setLifecycleOwner(viewLifecycleOwner)
 
         viewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
@@ -67,19 +65,20 @@ class CepFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_search.setOnClickListener {
-            val cep = txt_cep_search.editableText.toString()
-            if (cep.isEmpty()) {
-                viewModel.onSnackbarShown(getString(R.string.preencha_o_cep))
-                return@setOnClickListener
-            } else if (cep.length < LENGHT_CEP) {
-                viewModel.onSnackbarShown(getString(R.string.digite_cep_completo))
-                return@setOnClickListener
+            txt_cep_search.editableText.toString().let { cep ->
+                if (cep.isEmpty() || cep.length < LENGHT_ZIP_CODE) {
+                    if (cep.isEmpty()) {
+                        viewModel.onSnackbarShow(getString(R.string.preencha_o_cep))
+                    } else {
+                        viewModel.onSnackbarShow(getString(R.string.digite_cep_completo))
+                    }
+                    return@setOnClickListener
+                }
+                onHideKeyboard()
+                viewModel.onCleanFields()
+                viewModel.onProgressBarShow(true)
+                viewModel.onSearchAdress(cep)
             }
-
-            onHideKeyboard()
-            viewModel.onCleanFields()
-            viewModel.onProgressBarShown(true)
-            viewModel.onSearchAdress(cep)
         }
     }
 

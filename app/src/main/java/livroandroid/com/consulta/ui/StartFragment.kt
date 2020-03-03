@@ -32,12 +32,12 @@ class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedL
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_cep -> {
+            R.id.menu_zip_code -> {
                 this.findNavController().navigate(
                     StartFragmentDirections.actionStartFragmentToCepFragment()
                 )
             }
-            R.id.menu_endereco -> {
+            R.id.menu_adress -> {
                 this.findNavController().navigate(
                     StartFragmentDirections.actionStartFragmentToEnderecoFragment()
                 )

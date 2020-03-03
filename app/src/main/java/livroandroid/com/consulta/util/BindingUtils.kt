@@ -4,23 +4,23 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import livroandroid.com.consulta.entities.Adress
 
-@BindingAdapter("setCep")
-fun TextView.setCep(item: Adress?) {
+@BindingAdapter("setZipCode")
+fun TextView.setZipCode(item: Adress?) {
     item?.let {
-       text = it.cep
+        text = it.zipCode
     }
 }
 
-@BindingAdapter("setRua")
-fun TextView.setRua(item: Adress?) {
+@BindingAdapter("setStreet")
+fun TextView.setStreet(item: Adress?) {
     item?.let {
-        text = it.rua
+        text = it.street
     }
 }
 
-@BindingAdapter("setBairro")
-fun TextView.setBairro(item: Adress?) {
+@BindingAdapter("setDistrict")
+fun TextView.setDistrict(item: Adress?) {
     item?.let {
-        text = it.bairro
+        text = it.district
     }
 }

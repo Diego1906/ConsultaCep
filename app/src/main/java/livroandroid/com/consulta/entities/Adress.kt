@@ -5,17 +5,17 @@ import java.io.Serializable
 
 data class Adress(
     @SerializedName("cep")
-    val cep: String? = null,
+    val zipCode: String? = null,
 
     @SerializedName("logradouro")
-    val rua: String? = null,
+    val street: String? = null,
 
     @SerializedName("bairro")
-    val bairro: String? = null,
+    val district: String? = null,
 
     @SerializedName("localidade")
-    val cidade: String? = null,
+    val city: String? = null,
 
     @SerializedName("uf")
-    val uf: String? = null
+    val state: String? = null
 ) : Serializable

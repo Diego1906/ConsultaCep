@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="livroandroid.com.consulta.ui.EnderecoFragment">
+    tools:context="livroandroid.com.consulta.ui.AdressFragment">
 
     <data>
 
@@ -107,7 +107,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include"
-                tools:listitem="@layout/item_endereco" />
+                tools:listitem="@layout/item_list_adress" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

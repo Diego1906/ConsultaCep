@@ -16,6 +16,6 @@ class RetroFitConfig : IService {
     }
 
     override fun getService(): IRetrofitAPI {
-    return retrofit.create(IRetrofitAPI::class.java)
-}
+        return retrofit.create(IRetrofitAPI::class.java)
+    }
 }

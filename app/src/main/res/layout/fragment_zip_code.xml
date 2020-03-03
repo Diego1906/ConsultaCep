@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.CepFragment">
+    tools:context=".ui.ZipCodeFragment">
 
     <data>
 
@@ -72,7 +72,7 @@
                     <TextView
                         android:id="@+id/txt_cep"
                         style="@style/StyleTextViewForm"
-                        android:text="@{viewModel.cep}"
+                        android:text="@{viewModel.zipCode}"
                         tools:text="08673230" />
 
                     <TextView
@@ -84,7 +84,7 @@
                     <TextView
                         android:id="@+id/txt_rua"
                         style="@style/StyleTextViewForm"
-                        android:text="@{viewModel.rua}"
+                        android:text="@{viewModel.street}"
                         tools:text="Tomisaburo Urano" />
 
                     <TextView
@@ -96,7 +96,7 @@
                     <TextView
                         android:id="@+id/txt_bairro"
                         style="@style/StyleTextViewForm"
-                        android:text="@{viewModel.bairro}"
+                        android:text="@{viewModel.district}"
                         tools:text="Vila Figueira" />
 
                     <TextView
@@ -108,7 +108,7 @@
                     <TextView
                         android:id="@+id/txt_cidade"
                         style="@style/StyleTextViewForm"
-                        android:text="@{viewModel.cidade}"
+                        android:text="@{viewModel.city}"
                         tools:text="Suzano" />
 
                     <TextView
@@ -120,7 +120,7 @@
                     <TextView
                         android:id="@+id/txt_uf"
                         style="@style/StyleTextViewForm"
-                        android:text="@{viewModel.uf}"
+                        android:text="@{viewModel.state}"
                         tools:text="SP" />
 
                 </LinearLayout>

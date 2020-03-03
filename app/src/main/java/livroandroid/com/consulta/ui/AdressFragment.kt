@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_endereco.*
+import kotlinx.android.synthetic.main.fragment_adress.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.databinding.FragmentEnderecoBinding
-import livroandroid.com.consulta.ui.adapter.ListEnderecoAdapter
+import livroandroid.com.consulta.databinding.FragmentAdressBinding
+import livroandroid.com.consulta.ui.adapter.AdressListAdapter
 import livroandroid.com.consulta.util.onHideKeyboard
 import livroandroid.com.consulta.util.onSnackBarShow
 import livroandroid.com.consulta.util.onToastShow
@@ -22,16 +22,16 @@ import livroandroid.com.consulta.util.setTitle
 import livroandroid.com.consulta.viewmodel.AdressViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EnderecoFragment : Fragment() {
+class AdressFragment : Fragment() {
 
     private val viewModel: AdressViewModel by viewModel()
 
-    private lateinit var uf: String
-    private lateinit var cidade: String
-    private lateinit var rua: String
+    private lateinit var state: String
+    private lateinit var city: String
+    private lateinit var street: String
 
-    private val adapterListEndereco by lazy {
-        ListEnderecoAdapter()
+    private val adapterListAdress by lazy {
+        AdressListAdapter()
     }
 
     override fun onCreateView(
@@ -39,8 +39,8 @@ class EnderecoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = DataBindingUtil.inflate<FragmentEnderecoBinding>(
-            inflater, R.layout.fragment_endereco, container, false
+        val binding = DataBindingUtil.inflate<FragmentAdressBinding>(
+            inflater, R.layout.fragment_adress, container, false
         )
 
         binding.viewModel = viewModel
@@ -60,7 +60,7 @@ class EnderecoFragment : Fragment() {
 
         viewModel.listAdress.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapterListEndereco.submitList(it)
+                adapterListAdress.submitList(it)
             }
         })
         return binding.root
@@ -87,7 +87,7 @@ class EnderecoFragment : Fragment() {
     private fun onSetupRecyclerView() {
         recyclerView?.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            adapter = adapterListEndereco
+            adapter = adapterListAdress
         }
     }
 
@@ -108,20 +108,20 @@ class EnderecoFragment : Fragment() {
             override fun onItemSelected(
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
-                uf = spinner_estado.selectedItem.toString()
+                state = spinner_estado.selectedItem.toString()
             }
         }
     }
 
     private fun onSetOnClickListener() {
         btnSearchListAdress.setOnClickListener {
-            if (onValidateFields().not())
+            if (onValidateFields().not()) {
                 return@setOnClickListener
-
+            }
             onHideKeyboard()
             viewModel.onCleanFields()
             viewModel.onProgressBarShow(true)
-            viewModel.onSearchListAdress(uf, cidade, rua)
+            viewModel.onSearchListAdress(state, city, street)
         }
     }
 
@@ -130,14 +130,14 @@ class EnderecoFragment : Fragment() {
             if (it.isEmpty()) {
                 return onShowMsg(getString(R.string.preencha_campo_cidade))
             }
-            cidade = it
+            city = it
         }
 
         edit_text_rua.editableText.toString().let {
             if (it.isEmpty()) {
                 return onShowMsg(getString(R.string.preencha_campo_rua))
             }
-            rua = it
+            street = it
         }
         return true
     }

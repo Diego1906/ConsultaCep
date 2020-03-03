@@ -26,7 +26,7 @@
             <TextView
                 android:id="@+id/txt_cep_item"
                 style="@style/StyleTextViewForm"
-                app:setCep="@{adress}"
+                app:setZipCode="@{adress}"
                 tools:text="01311-922" />
 
             <TextView
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/txt_rua_item"
                 style="@style/StyleTextViewForm"
-                app:setRua="@{adress}"
+                app:setStreet="@{adress}"
                 tools:text="Avenida Paulista" />
 
             <TextView
@@ -50,7 +50,7 @@
             <TextView
                 android:id="@+id/txt_bairro_item"
                 style="@style/StyleTextViewForm"
-                app:setBairro="@{adress}"
+                app:setDistrict="@{adress}"
                 tools:text="Bela Vista" />
 
         </LinearLayout>

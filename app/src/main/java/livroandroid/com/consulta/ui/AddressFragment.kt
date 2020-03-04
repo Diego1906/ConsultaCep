@@ -11,27 +11,27 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_adress.*
+import kotlinx.android.synthetic.main.fragment_address.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.databinding.FragmentAdressBinding
-import livroandroid.com.consulta.ui.adapter.AdressListAdapter
+import livroandroid.com.consulta.databinding.FragmentAddressBinding
+import livroandroid.com.consulta.ui.adapter.AddressListAdapter
 import livroandroid.com.consulta.util.onHideKeyboard
 import livroandroid.com.consulta.util.onSnackBarShow
 import livroandroid.com.consulta.util.onToastShow
 import livroandroid.com.consulta.util.setTitle
-import livroandroid.com.consulta.viewmodel.AdressViewModel
+import livroandroid.com.consulta.viewmodel.AddressViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AdressFragment : Fragment() {
+class AddressFragment : Fragment() {
 
-    private val viewModel: AdressViewModel by viewModel()
+    private val viewModel: AddressViewModel by viewModel()
 
     private lateinit var state: String
     private lateinit var city: String
     private lateinit var street: String
 
-    private val adapterListAdress by lazy {
-        AdressListAdapter()
+    private val adapterListAddress by lazy {
+        AddressListAdapter()
     }
 
     override fun onCreateView(
@@ -39,8 +39,8 @@ class AdressFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = DataBindingUtil.inflate<FragmentAdressBinding>(
-            inflater, R.layout.fragment_adress, container, false
+        val binding = DataBindingUtil.inflate<FragmentAddressBinding>(
+            inflater, R.layout.fragment_address, container, false
         )
 
         binding.viewModel = viewModel
@@ -58,9 +58,9 @@ class AdressFragment : Fragment() {
             }
         })
 
-        viewModel.listAdress.observe(viewLifecycleOwner, Observer {
+        viewModel.listAddress.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapterListAdress.submitList(it)
+                adapterListAddress.submitList(it)
             }
         })
         return binding.root
@@ -81,61 +81,61 @@ class AdressFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        setTitle(getString(R.string.consulta_por_endereco))
+        setTitle(getString(R.string.search_by_address))
     }
 
     private fun onSetupRecyclerView() {
         recyclerView?.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            adapter = adapterListAdress
+            adapter = adapterListAddress
         }
     }
 
     private fun onInitializeSpinner() {
-        spinner_estado?.let {
+        spinnerStates?.let {
             it.adapter = ArrayAdapter(
                 this.requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
-                resources.getStringArray(R.array.Estados)
+                resources.getStringArray(R.array.states)
             )
         }
     }
 
     private fun onItemSelectedListenerSpinner() {
-        spinner_estado.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinnerStates?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
-                state = spinner_estado.selectedItem.toString()
+                state = spinnerStates.selectedItem.toString()
             }
         }
     }
 
     private fun onSetOnClickListener() {
-        btnSearchListAdress.setOnClickListener {
+        btnSearchAddress.setOnClickListener {
             if (onValidateFields().not()) {
                 return@setOnClickListener
             }
             onHideKeyboard()
             viewModel.onCleanFields()
             viewModel.onProgressBarShow(true)
-            viewModel.onSearchListAdress(state, city, street)
+            viewModel.onSearchListAddress(Triple(state, city, street))
         }
     }
 
     private fun onValidateFields(): Boolean {
-        edit_text_cidade.editableText.toString().let {
+        editTextCity.editableText.toString().let {
             if (it.isEmpty()) {
-                return onShowMsg(getString(R.string.preencha_campo_cidade))
+                return onShowMsg(getString(R.string.enter_city_name))
             }
             city = it
         }
 
-        edit_text_rua.editableText.toString().let {
+        editTextStreet.editableText.toString().let {
             if (it.isEmpty()) {
-                return onShowMsg(getString(R.string.preencha_campo_rua))
+                return onShowMsg(getString(R.string.enter_street_name))
             }
             street = it
         }

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="adress"
-            type="livroandroid.com.consulta.entities.Adress" />
+            name="address"
+            type="livroandroid.com.consulta.model.AddressObject" />
 
     </data>
 
@@ -26,7 +26,7 @@
             <TextView
                 android:id="@+id/txt_cep_item"
                 style="@style/StyleTextViewForm"
-                app:setZipCode="@{adress}"
+                app:setPostalCode="@{address}"
                 tools:text="01311-922" />
 
             <TextView
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/txt_rua_item"
                 style="@style/StyleTextViewForm"
-                app:setStreet="@{adress}"
+                app:setStreet="@{address}"
                 tools:text="Avenida Paulista" />
 
             <TextView
@@ -50,7 +50,7 @@
             <TextView
                 android:id="@+id/txt_bairro_item"
                 style="@style/StyleTextViewForm"
-                app:setDistrict="@{adress}"
+                app:setNeighborhood="@{address}"
                 tools:text="Bela Vista" />
 
         </LinearLayout>

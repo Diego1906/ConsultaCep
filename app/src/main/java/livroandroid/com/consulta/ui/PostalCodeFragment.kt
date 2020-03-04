@@ -8,28 +8,28 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_zip_code.*
+import kotlinx.android.synthetic.main.fragment_postal_code.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.databinding.FragmentZipCodeBinding
+import livroandroid.com.consulta.databinding.FragmentPostalCodeBinding
 import livroandroid.com.consulta.util.onHideKeyboard
 import livroandroid.com.consulta.util.onToastShow
 import livroandroid.com.consulta.util.setTitle
-import livroandroid.com.consulta.viewmodel.AdressViewModel
+import livroandroid.com.consulta.viewmodel.AddressViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-const val LENGHT_ZIP_CODE = 8
+const val LENGHT_POSTAL_CODE = 8
 
-class ZipCodeFragment : Fragment() {
+class PostalCodeFragment : Fragment() {
 
-    private val viewModel: AdressViewModel by viewModel()
+    private val viewModel: AddressViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = DataBindingUtil.inflate<FragmentZipCodeBinding>(
-            inflater, R.layout.fragment_zip_code, container, false
+        val binding = DataBindingUtil.inflate<FragmentPostalCodeBinding>(
+            inflater, R.layout.fragment_postal_code, container, false
         )
 
         binding.viewModel = viewModel
@@ -38,7 +38,7 @@ class ZipCodeFragment : Fragment() {
         viewModel.snackbar.observe(viewLifecycleOwner, Observer { msg ->
             msg?.let {
                 Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).apply {
-                    setAnchorView(R.id.card_cep)
+                    setAnchorView(R.id.cardViewCep)
                     show()
                 }
             }
@@ -52,7 +52,7 @@ class ZipCodeFragment : Fragment() {
             }
         })
 
-        viewModel.adress.observe(viewLifecycleOwner, Observer {
+        viewModel.address.observe(viewLifecycleOwner, Observer {
             it?.let {
                 viewModel.onFillFields(it)
             }
@@ -64,20 +64,20 @@ class ZipCodeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_search.setOnClickListener {
-            txt_cep_search.editableText.toString().let { cep ->
-                if (cep.isEmpty() || cep.length < LENGHT_ZIP_CODE) {
-                    if (cep.isEmpty()) {
-                        viewModel.onSnackbarShow(getString(R.string.preencha_o_cep))
+        btnSearchPostalCode.setOnClickListener {
+            editTextPostalCode.editableText.toString().let { postalCode ->
+                if (postalCode.isEmpty() || postalCode.length < LENGHT_POSTAL_CODE) {
+                    if (postalCode.isEmpty()) {
+                        viewModel.onSnackbarShow(getString(R.string.fill_postal_code))
                     } else {
-                        viewModel.onSnackbarShow(getString(R.string.digite_cep_completo))
+                        viewModel.onSnackbarShow(getString(R.string.typeIt_postal_code_full))
                     }
                     return@setOnClickListener
                 }
                 onHideKeyboard()
                 viewModel.onCleanFields()
                 viewModel.onProgressBarShow(true)
-                viewModel.onSearchAdress(cep)
+                viewModel.onSearchAddress(postalCode)
             }
         }
     }
@@ -85,6 +85,6 @@ class ZipCodeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        this.setTitle(getString(R.string.consulta_por_cep))
+        this.setTitle(getString(R.string.search_by_postal_code))
     }
 }

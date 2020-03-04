@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import livroandroid.com.consulta.databinding.ItemListAdressBinding
-import livroandroid.com.consulta.entities.Adress
+import livroandroid.com.consulta.databinding.ItemListAddressBinding
+import livroandroid.com.consulta.model.AddressObject
 
-class AdressListAdapter :
-    ListAdapter<Adress, AdressListAdapter.ItemHolder>(
-        AdressDiffCallBack()
+class AddressListAdapter :
+    ListAdapter<AddressObject, AddressListAdapter.ItemHolder>(
+        AddressDiffCallBack()
     ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
@@ -22,30 +22,30 @@ class AdressListAdapter :
         holder.bind(item)
     }
 
-    class ItemHolder private constructor(val binding: ItemListAdressBinding) :
+    class ItemHolder private constructor(private val binding: ItemListAddressBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Adress) {
-            binding.adress = item
+        fun bind(item: AddressObject) {
+            binding.address = item
             binding.executePendingBindings()
         }
 
         companion object {
             fun from(parent: ViewGroup): ItemHolder {
                 val inflater = LayoutInflater.from(parent.context)
-                val binding = ItemListAdressBinding.inflate(inflater, parent, false)
+                val binding = ItemListAddressBinding.inflate(inflater, parent, false)
                 return ItemHolder(binding)
             }
         }
     }
 }
 
-class AdressDiffCallBack : DiffUtil.ItemCallback<Adress>() {
-    override fun areItemsTheSame(oldItem: Adress, newItem: Adress): Boolean {
-        return oldItem.zipCode == newItem.zipCode
+class AddressDiffCallBack : DiffUtil.ItemCallback<AddressObject>() {
+    override fun areItemsTheSame(oldItem: AddressObject, newItem: AddressObject): Boolean {
+        return oldItem.postalCode == newItem.postalCode
     }
 
-    override fun areContentsTheSame(oldItem: Adress, newItem: Adress): Boolean {
+    override fun areContentsTheSame(oldItem: AddressObject, newItem: AddressObject): Boolean {
         return oldItem == newItem
     }
 }

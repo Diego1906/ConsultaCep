@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
 fun Fragment.setTitle(title: String) {
-    (activity as AppCompatActivity).supportActionBar?.title = title
+    (activity as? AppCompatActivity)?.supportActionBar?.title = title
 }
 
 fun Fragment.onHideKeyboard() {

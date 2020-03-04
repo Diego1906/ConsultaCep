@@ -25,19 +25,19 @@ class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedL
     override fun onStart() {
         super.onStart()
 
-        setTitle(getString(R.string.consulta))
+        setTitle(getString(R.string.search))
 
         bottom_navigation.setOnNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_zip_code -> {
+            R.id.menu_postal_code -> {
                 this.findNavController().navigate(
                     StartFragmentDirections.actionStartFragmentToCepFragment()
                 )
             }
-            R.id.menu_adress -> {
+            R.id.menu_address -> {
                 this.findNavController().navigate(
                     StartFragmentDirections.actionStartFragmentToEnderecoFragment()
                 )

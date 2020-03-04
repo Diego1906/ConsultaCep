@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="livroandroid.com.consulta.viewmodel.AdressViewModel" />
+            type="livroandroid.com.consulta.viewmodel.AddressViewModel" />
     </data>
 
     <ProgressBar

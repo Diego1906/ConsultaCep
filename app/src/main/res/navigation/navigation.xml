@@ -19,13 +19,13 @@
     </fragment>
     <fragment
         android:id="@+id/cepFragment"
-        android:name="livroandroid.com.consulta.ui.ZipCodeFragment"
+        android:name="livroandroid.com.consulta.ui.PostalCodeFragment"
         android:label="fragment_cep"
-        tools:layout="@layout/fragment_zip_code" />
+        tools:layout="@layout/fragment_postal_code" />
     <fragment
         android:id="@+id/enderecoFragment"
-        android:name="livroandroid.com.consulta.ui.AdressFragment"
+        android:name="livroandroid.com.consulta.ui.AddressFragment"
         android:label="fragment_endereco"
-        tools:layout="@layout/fragment_adress" />
+        tools:layout="@layout/fragment_address" />
 
 </navigation>

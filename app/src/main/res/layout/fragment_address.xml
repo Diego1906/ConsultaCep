@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="livroandroid.com.consulta.ui.AdressFragment">
+    tools:context="livroandroid.com.consulta.ui.AddressFragment">
 
     <data>
 
@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="livroandroid.com.consulta.viewmodel.AdressViewModel" />
+            type="livroandroid.com.consulta.viewmodel.AddressViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView style="@style/StyleScrollView">
@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/txt_estado"
+                android:id="@+id/txtState"
                 android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                android:id="@+id/view_separator"
+                android:id="@+id/viewSeparator"
                 style="@style/StyleViewForm"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="@dimen/dimen_2dp"
@@ -42,51 +42,51 @@
                 android:background="@android:color/background_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_estado" />
+                app:layout_constraintTop_toBottomOf="@id/txtState" />
 
             <Spinner
-                android:id="@+id/spinner_estado"
+                android:id="@+id/spinnerStates"
                 android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_8dp"
                 android:layout_marginEnd="@dimen/dimen_8dp"
-                app:layout_constraintBottom_toBottomOf="@id/view_separator"
+                app:layout_constraintBottom_toBottomOf="@id/viewSeparator"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/txt_estado"
-                app:layout_constraintTop_toTopOf="@id/txt_estado" />
+                app:layout_constraintStart_toEndOf="@id/txtState"
+                app:layout_constraintTop_toTopOf="@id/txtState" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_text_cidade"
+                android:id="@+id/inputCity"
                 style="@style/StyleInputTextForm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/spinner_estado">
+                app:layout_constraintTop_toBottomOf="@id/spinnerStates">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_cidade"
+                    android:id="@+id/editTextCity"
                     style="@style/StyleInputEditTextFormWords"
                     android:hint="@string/digite_o_nome_da_cidade_aqui" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_text_rua"
+                android:id="@+id/inputStreet"
                 style="@style/StyleInputTextForm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_text_cidade">
+                app:layout_constraintTop_toBottomOf="@id/inputCity">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_rua"
+                    android:id="@+id/editTextStreet"
                     style="@style/StyleInputEditTextFormWords"
                     android:hint="@string/digite_o_nome_da_rua_aqui" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnSearchListAdress"
+                android:id="@+id/btnSearchAddress"
                 style="@style/StyleButtonPesquisar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_text_rua" />
+                app:layout_constraintTop_toBottomOf="@id/inputStreet" />
 
             <include
                 android:id="@+id/include"
@@ -96,7 +96,7 @@
                 android:layout_margin="@dimen/dimen_8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnSearchListAdress"
+                app:layout_constraintTop_toBottomOf="@+id/btnSearchAddress"
                 bind:viewModel="@{viewModel}" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -107,7 +107,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include"
-                tools:listitem="@layout/item_list_adress" />
+                tools:listitem="@layout/item_list_address" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

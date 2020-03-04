@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.ZipCodeFragment">
+    tools:context=".ui.PostalCodeFragment">
 
     <data>
 
@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="livroandroid.com.consulta.viewmodel.AdressViewModel" />
+            type="livroandroid.com.consulta.viewmodel.AddressViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView style="@style/StyleScrollView">
@@ -21,14 +21,14 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_text"
+                android:id="@+id/inputPostalCode"
                 style="@style/StyleInputTextForm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_cep_search"
+                    android:id="@+id/editTextPostalCode"
                     style="@style/StyleInputEditTextForm"
                     android:hint="@string/digite_o_cep_aqui"
                     android:inputType="number"
@@ -36,11 +36,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_search"
+                android:id="@+id/btnSearchPostalCode"
                 style="@style/StyleButtonPesquisar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_text" />
+                app:layout_constraintTop_toBottomOf="@id/inputPostalCode" />
 
             <include
                 android:id="@+id/include"
@@ -50,11 +50,11 @@
                 android:layout_margin="@dimen/dimen_8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_search"
+                app:layout_constraintTop_toBottomOf="@id/btnSearchPostalCode"
                 bind:viewModel="@{viewModel}" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_cep"
+                android:id="@+id/cardViewCep"
                 style="@style/StyleCardViewForm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -70,9 +70,9 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txt_cep"
+                        android:id="@+id/txtPostalCodeCardView"
                         style="@style/StyleTextViewForm"
-                        android:text="@{viewModel.zipCode}"
+                        android:text="@{viewModel.postalCode}"
                         tools:text="08673230" />
 
                     <TextView
@@ -82,7 +82,7 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txt_rua"
+                        android:id="@+id/txtStreetCardView"
                         style="@style/StyleTextViewForm"
                         android:text="@{viewModel.street}"
                         tools:text="Tomisaburo Urano" />
@@ -94,9 +94,9 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txt_bairro"
+                        android:id="@+id/txtNeighborhoodCardView"
                         style="@style/StyleTextViewForm"
-                        android:text="@{viewModel.district}"
+                        android:text="@{viewModel.neighborhood}"
                         tools:text="Vila Figueira" />
 
                     <TextView
@@ -106,7 +106,7 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txt_cidade"
+                        android:id="@+id/txtCityCardView"
                         style="@style/StyleTextViewForm"
                         android:text="@{viewModel.city}"
                         tools:text="Suzano" />
@@ -118,13 +118,12 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txt_uf"
+                        android:id="@+id/txtStateCardView"
                         style="@style/StyleTextViewForm"
                         android:text="@{viewModel.state}"
                         tools:text="SP" />
 
                 </LinearLayout>
-
 
             </androidx.cardview.widget.CardView>
 

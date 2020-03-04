@@ -3,15 +3,15 @@ package livroandroid.com.consulta.entities
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class Adress(
+data class Address(
     @SerializedName("cep")
-    val zipCode: String? = null,
+    val postalCode: String? = null,
 
     @SerializedName("logradouro")
     val street: String? = null,
 
     @SerializedName("bairro")
-    val district: String? = null,
+    val neighborhood: String? = null,
 
     @SerializedName("localidade")
     val city: String? = null,

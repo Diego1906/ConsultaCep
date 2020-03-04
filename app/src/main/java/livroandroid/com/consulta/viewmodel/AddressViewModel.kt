@@ -7,11 +7,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import livroandroid.com.consulta.R
-import livroandroid.com.consulta.entities.Adress
-import livroandroid.com.consulta.repository.IRepository
+import livroandroid.com.consulta.model.AddressObject
+import livroandroid.com.consulta.repository.IRepositoryAddress
 
-class AdressViewModel(
-    private val repository: IRepository, application: Application
+class AddressViewModel(
+    private val repository: IRepositoryAddress, application: Application
 ) : AndroidViewModel(application) {
 
     private val TAG = javaClass.simpleName
@@ -26,17 +26,17 @@ class AdressViewModel(
         CoroutineScope(Dispatchers.Main + viewModelJob)
     }
 
-    private var _zipCode = MutableLiveData<String>()
-    val zipCode: LiveData<String>
-        get() = _zipCode
+    private var _postalCode = MutableLiveData<String>()
+    val postalCode: LiveData<String>
+        get() = _postalCode
 
     private var _street = MutableLiveData<String>()
     val street: LiveData<String>
         get() = _street
 
-    private var _district = MutableLiveData<String>()
-    val district: LiveData<String>
-        get() = _district
+    private var _neighborhood = MutableLiveData<String>()
+    val neighborhood: LiveData<String>
+        get() = _neighborhood
 
     private var _city = MutableLiveData<String>()
     val city: LiveData<String>
@@ -58,31 +58,31 @@ class AdressViewModel(
     val toast: LiveData<String>
         get() = _toast
 
-    private val _listAdress = MutableLiveData<List<Adress>>()
-    val listAdress: LiveData<List<Adress>>
-        get() = _listAdress
+    private val _listAddress = MutableLiveData<List<AddressObject>>()
+    val listAddress: LiveData<List<AddressObject>>
+        get() = _listAddress
 
-    private val _adress = MutableLiveData<Adress>()
-    val adress: LiveData<Adress>
-        get() = _adress
+    private val _address = MutableLiveData<AddressObject>()
+    val address: LiveData<AddressObject>
+        get() = _address
 
-    fun onSearchAdress(cep: String) {
+    fun onSearchAddress(postalCode: String) {
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    repository.searchAdress(cep).let {
-                        if (it.zipCode.isNullOrEmpty()) {
+                    repository.searchAddress(postalCode).let {
+                        if (it.postalCode.isNullOrEmpty()) {
                             _toast.postValue(
-                                context.getString(R.string.nao_foi_possivel_localizar)
+                                context.getString(R.string.not_found)
                             )
                         } else {
-                            _adress.postValue(it)
+                            _address.postValue(it)
                         }
                     }
                 } catch (ex: Exception) {
                     Log.e(TAG, "${context.getString(R.string.exception)} ${ex.message}")
                     _toast.postValue(
-                        "${context.getString(R.string.nao_foi_possivel_consultar_cep)} ${ex.message}"
+                        "${context.getString(R.string.not_found_by_postal_code)} ${ex.message}"
                     )
                 }
             }
@@ -90,15 +90,15 @@ class AdressViewModel(
         }
     }
 
-    fun onSearchListAdress(uf: String, cidade: String, rua: String) {
+    fun onSearchListAddress(values: Triple<String, String, String>) {
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    repository.searchListAdress(uf, cidade, rua).let {
+                    repository.searchListAddress(values).let {
                         if (it.isNotEmpty())
-                            _listAdress.postValue(it)
+                            _listAddress.postValue(it)
                         else
-                            _toast.postValue(context.getString(R.string.nao_foi_possivel_localizar))
+                            _toast.postValue(context.getString(R.string.not_found))
                     }
                 } catch (ex: Exception) {
                     Log.e(TAG, "${context.getString(R.string.exception)} ${ex.message}")
@@ -110,9 +110,9 @@ class AdressViewModel(
     }
 
     fun onCleanFields() {
-        _zipCode.value = null
+        _postalCode.value = null
         _street.value = null
-        _district.value = null
+        _neighborhood.value = null
         _city.value = null
         _state.value = null
         _progressBar.value = null
@@ -120,12 +120,12 @@ class AdressViewModel(
         _toast.value = null
     }
 
-    fun onFillFields(adress: Adress) {
-        _zipCode.postValue(adress.zipCode)
-        _street.postValue(adress.street)
-        _district.postValue(adress.district)
-        _city.postValue(adress.city)
-        _state.postValue(adress.state)
+    fun onFillFields(address: AddressObject) {
+        _postalCode.postValue(address.postalCode)
+        _street.postValue(address.street)
+        _neighborhood.postValue(address.neighborhood)
+        _city.postValue(address.city)
+        _state.postValue(address.state)
     }
 
     override fun onCleared() {

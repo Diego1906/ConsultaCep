@@ -1,17 +1,17 @@
 package livroandroid.com.consulta.network
 
-import livroandroid.com.consulta.entities.Adress
+import livroandroid.com.consulta.entities.Address
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface IRetrofitAPI {
-    @GET("{cep}/json/")
-    suspend fun getRemoteAdress(@Path("cep") cep: String): Adress
+    @GET("{postalCode}/json/")
+    suspend fun getRemoteAddress(@Path("postalCode") postalCode: String): Address
 
-    @GET("{uf}/{cidade}/{rua}/json/")
-    suspend fun getRemoteListAdress(
-        @Path("uf") uf: String,
-        @Path("cidade") cidade: String,
-        @Path("rua") rua: String
-    ): List<Adress>
+    @GET("{state}/{city}/{street}/json/")
+    suspend fun getRemoteListAddress(
+        @Path("state") state: String,
+        @Path("city") city: String,
+        @Path("street") street: String
+    ): List<Address>
 }

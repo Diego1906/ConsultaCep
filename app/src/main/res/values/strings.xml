@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Consulta Cep</string>
-    <string name="consulta">Consulta</string>
-    <string name="consulta_por_endereco">Consulta por Endereço</string>
-    <string name="consulta_por_cep">Consulta por Cep</string>
-    <string name="preencha_o_cep">Preencha o campo do cep</string>
-    <string name="digite_cep_completo">Digite o cep com 8 dígitos</string>
+    <string name="search">Consulta</string>
+    <string name="search_by_address">Consulta por Endereço</string>
+    <string name="search_by_postal_code">Consulta por Cep</string>
+    <string name="fill_postal_code">Preencha o campo do cep</string>
+    <string name="typeIt_postal_code_full">Digite o cep com 8 dígitos</string>
     <string name="digite_o_cep_aqui">Digite o cep aqui</string>
     <string name="pesquisar">Pesquisar</string>
     <string name="cep">Cep</string>
@@ -14,20 +14,20 @@
     <string name="uf">UF</string>
     <string name="icone_da_tela_incial">Icone da tela incial</string>
     <string name="exception">Exception: </string>
-    <string name="nao_foi_possivel_consultar_cep">Não foi possível consultar o Cep. Houve um erro inesperado: </string>
+    <string name="not_found_by_postal_code">Não foi possível consultar o Cep. Houve um erro inesperado: </string>
     <string name="endereco">Endereço</string>
     <string name="selecione_um_estado">Selecione um Estado:</string>
     <string name="digite_o_nome_da_cidade_aqui">Digite o nome da cidade aqui</string>
     <string name="digite_o_nome_da_rua_aqui">Digite o nome da rua aqui</string>
     <string name="error_500">Erro ao acessar nossos serviços. Tente novamente mais tarde.</string>
     <string name="generic_error_remote">Erro desconhecido, tente mais tarde.</string>
-    <string name="nao_foi_possivel_localizar">Não foi possível localizar ao menos um endereço com as informações fornecidas.
+    <string name="not_found">Não foi possível localizar ao menos um endereço com as informações fornecidas.
         Verifique se as informações inseridas estão corretas e faça uma nova pesquisa.</string>
     <string name="erro_inesperado">Houve um erro inesperado. Motivo: </string>
-    <string name="preencha_campo_rua">Preencha o campo rua</string>
-    <string name="preencha_campo_cidade">Preencha o campo cidade</string>
+    <string name="enter_street_name">Preencha o campo rua</string>
+    <string name="enter_city_name">Preencha o campo cidade</string>
 
-    <string-array name="Estados">
+    <string-array name="states">
         <item>AC</item>
         <item>AL</item>
         <item>AM</item>

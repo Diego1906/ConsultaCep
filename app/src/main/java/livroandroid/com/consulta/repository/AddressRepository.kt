@@ -10,9 +10,7 @@ class AddressRepository(private val service: IService) : IRepositoryAddress {
         return service.getService().getRemoteAddress(postalCode).mapToObject()
     }
 
-    override suspend fun searchListAddress(
-        values: Triple<String, String, String>
-    ): List<AddressObject> {
+    override suspend fun searchListAddress(values: Triple<String, String, String>): List<AddressObject> {
         return service.getService()
             .getRemoteListAddress(state = values.first, city = values.second, street = values.third)
             .map {

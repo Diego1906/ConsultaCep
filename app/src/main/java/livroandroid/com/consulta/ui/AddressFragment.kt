@@ -15,10 +15,7 @@ import kotlinx.android.synthetic.main.fragment_address.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.databinding.FragmentAddressBinding
 import livroandroid.com.consulta.ui.adapter.AddressListAdapter
-import livroandroid.com.consulta.util.onHideKeyboard
-import livroandroid.com.consulta.util.onSnackBarShow
-import livroandroid.com.consulta.util.onToastShow
-import livroandroid.com.consulta.util.setTitle
+import livroandroid.com.consulta.util.*
 import livroandroid.com.consulta.viewmodel.AddressViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,15 +44,11 @@ class AddressFragment : Fragment() {
         binding.setLifecycleOwner(viewLifecycleOwner)
 
         viewModel.snackbar.observe(viewLifecycleOwner, Observer {
-            it?.onSnackBarShow(this.requireView())
+            it?.onSnackBarShow(requireView())
         })
 
-        viewModel.toast.observe(viewLifecycleOwner, Observer { msg ->
-            msg?.let {
-                view?.context?.let { context ->
-                    it.onToastShow(context)
-                }
-            }
+        viewModel.toast.observe(viewLifecycleOwner, Observer {
+            it?.onToastShow(requireContext())
         })
 
         viewModel.listAddress.observe(viewLifecycleOwner, Observer {
@@ -63,6 +56,13 @@ class AddressFragment : Fragment() {
                 adapterListAddress.submitList(it)
             }
         })
+
+        viewModel.connectionIsActive.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                getString(R.string.offline_connection).onToastShow(requireContext())
+            }
+        })
+
         return binding.root
     }
 
@@ -94,7 +94,7 @@ class AddressFragment : Fragment() {
     private fun onInitializeSpinner() {
         spinnerStates?.let {
             it.adapter = ArrayAdapter(
-                this.requireContext(),
+                requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 resources.getStringArray(R.array.states)
             )
@@ -115,6 +115,11 @@ class AddressFragment : Fragment() {
 
     private fun onSetOnClickListener() {
         btnSearchAddress.setOnClickListener {
+            if (Connection.isActive(requireContext()).not()) {
+                viewModel.onConnectionIsActive(false)
+                return@setOnClickListener
+            }
+
             if (onValidateFields().not()) {
                 return@setOnClickListener
             }

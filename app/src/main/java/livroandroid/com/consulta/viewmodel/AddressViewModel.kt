@@ -66,6 +66,10 @@ class AddressViewModel(
     val address: LiveData<AddressObject>
         get() = _address
 
+    private val _connectionIsActive = MutableLiveData<Boolean>()
+    val connectionIsActive: LiveData<Boolean>
+        get() = _connectionIsActive
+
     fun onSearchAddress(postalCode: String) {
         uiScope.launch {
             withContext(Dispatchers.IO) {
@@ -118,6 +122,7 @@ class AddressViewModel(
         _progressBar.value = null
         _snackBar.value = null
         _toast.value = null
+        _connectionIsActive.value = null
     }
 
     fun onFillFields(address: AddressObject) {
@@ -139,5 +144,9 @@ class AddressViewModel(
 
     fun onSnackbarShow(msg: String) {
         _snackBar.value = msg
+    }
+
+    fun onConnectionIsActive(value: Boolean) {
+        _connectionIsActive.value = value
     }
 }

@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_postal_code.*
 import livroandroid.com.consulta.R
 import livroandroid.com.consulta.databinding.FragmentPostalCodeBinding
+import livroandroid.com.consulta.util.Connection
 import livroandroid.com.consulta.util.onHideKeyboard
 import livroandroid.com.consulta.util.onToastShow
 import livroandroid.com.consulta.util.setTitle
@@ -45,16 +46,18 @@ class PostalCodeFragment : Fragment() {
         })
 
         viewModel.toast.observe(viewLifecycleOwner, Observer { msg ->
-            msg?.let {
-                view?.context?.let { context ->
-                    it.onToastShow(context)
-                }
-            }
+            msg?.onToastShow(requireContext())
         })
 
         viewModel.address.observe(viewLifecycleOwner, Observer {
             it?.let {
                 viewModel.onFillFields(it)
+            }
+        })
+
+        viewModel.connectionIsActive.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                getString(R.string.offline_connection).onToastShow(requireContext())
             }
         })
 
@@ -65,6 +68,11 @@ class PostalCodeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnSearchPostalCode.setOnClickListener {
+            if (Connection.isActive(view.context).not()) {
+                viewModel.onConnectionIsActive(false)
+                return@setOnClickListener
+            }
+
             editTextPostalCode.editableText.toString().let { postalCode ->
                 if (postalCode.isEmpty() || postalCode.length < LENGHT_POSTAL_CODE) {
                     if (postalCode.isEmpty()) {

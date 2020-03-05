@@ -19,13 +19,14 @@
     <string name="selecione_um_estado">Selecione um Estado:</string>
     <string name="digite_o_nome_da_cidade_aqui">Digite o nome da cidade aqui</string>
     <string name="digite_o_nome_da_rua_aqui">Digite o nome da rua aqui</string>
-    <string name="error_500">Erro ao acessar nossos serviços. Tente novamente mais tarde.</string>
+    <string name="error_500">Erro ao acessar nossos serviços. Tente novamente mais tarde</string>
     <string name="generic_error_remote">Erro desconhecido, tente mais tarde.</string>
-    <string name="not_found">Não foi possível localizar ao menos um endereço com as informações fornecidas.
-        Verifique se as informações inseridas estão corretas e faça uma nova pesquisa.</string>
+    <string name="not_found">Não foi possível localizar ao menos um endereço com as informações fornecidas
+        Verifique se as informações inseridas estão corretas e faça uma nova pesquisa</string>
     <string name="erro_inesperado">Houve um erro inesperado. Motivo: </string>
     <string name="enter_street_name">Preencha o campo rua</string>
     <string name="enter_city_name">Preencha o campo cidade</string>
+    <string name="offline_connection">Sem conexão com a internet</string>
 
     <string-array name="states">
         <item>AC</item>

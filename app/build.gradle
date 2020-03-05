@@ -26,7 +26,6 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix '-DEBUG'
             buildConfigField "String", "URL_BASE", "\"https://viacep.com.br/ws/\""
-            buildConfigField "boolean", "REPORT_CRASH", "false"
         }
         release {
             debuggable false
@@ -37,21 +36,6 @@ android {
     // Enables data binding.
     dataBinding {
         enabled = true
-    }
-
-    // Specifies one flavor dimension.
-    flavorDimensions "version"
-    productFlavors {
-        regular {
-        }
-        demo {
-            applicationIdSuffix = ".demo"
-        }
-        winter {
-            applicationIdSuffix = ".winter"
-            versionCode 1
-            versionName "1.0.0"
-        }
     }
 }
 

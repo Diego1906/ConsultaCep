@@ -70,7 +70,6 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txtPostalCodeCardView"
                         style="@style/StyleTextViewForm"
                         android:text="@{viewModel.postalCode}"
                         tools:text="08673230" />
@@ -82,10 +81,9 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txtStreetCardView"
                         style="@style/StyleTextViewForm"
                         android:text="@{viewModel.street}"
-                        tools:text="Tomisaburo Urano" />
+                        tools:text="Gato Cinzento" />
 
                     <TextView
                         style="@style/StyleLabelForm2"
@@ -94,10 +92,9 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txtNeighborhoodCardView"
                         style="@style/StyleTextViewForm"
                         android:text="@{viewModel.neighborhood}"
-                        tools:text="Vila Figueira" />
+                        tools:text="Vila Amorim" />
 
                     <TextView
                         style="@style/StyleLabelForm2"
@@ -106,7 +103,6 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txtCityCardView"
                         style="@style/StyleTextViewForm"
                         android:text="@{viewModel.city}"
                         tools:text="Suzano" />
@@ -118,17 +114,12 @@
                     <View style="@style/StyleViewForm" />
 
                     <TextView
-                        android:id="@+id/txtStateCardView"
                         style="@style/StyleTextViewForm"
                         android:text="@{viewModel.state}"
                         tools:text="SP" />
 
                 </LinearLayout>
-
             </androidx.cardview.widget.CardView>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 </layout>

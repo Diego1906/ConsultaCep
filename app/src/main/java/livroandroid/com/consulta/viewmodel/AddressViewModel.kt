@@ -26,23 +26,23 @@ class AddressViewModel(
         CoroutineScope(Dispatchers.Main + viewModelJob)
     }
 
-    private var _postalCode = MutableLiveData<String>()
+    private val _postalCode = MutableLiveData<String>()
     val postalCode: LiveData<String>
         get() = _postalCode
 
-    private var _street = MutableLiveData<String>()
+    private val _street = MutableLiveData<String>()
     val street: LiveData<String>
         get() = _street
 
-    private var _neighborhood = MutableLiveData<String>()
+    private val _neighborhood = MutableLiveData<String>()
     val neighborhood: LiveData<String>
         get() = _neighborhood
 
-    private var _city = MutableLiveData<String>()
+    private val _city = MutableLiveData<String>()
     val city: LiveData<String>
         get() = _city
 
-    private var _state = MutableLiveData<String>()
+    private val _state = MutableLiveData<String>()
     val state: LiveData<String>
         get() = _state
 

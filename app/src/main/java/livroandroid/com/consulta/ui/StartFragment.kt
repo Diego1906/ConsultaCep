@@ -27,7 +27,7 @@ class StartFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedL
 
         setTitle(getString(R.string.search))
 
-        bottom_navigation.setOnNavigationItemSelectedListener(this)
+        bottomNavigation.setOnNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

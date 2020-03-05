@@ -14,9 +14,8 @@ fun Fragment.setTitle(title: String) {
 }
 
 fun Fragment.onHideKeyboard() {
-    val context = requireNotNull(activity).application.baseContext
-    val imm = ContextCompat.getSystemService(context, InputMethodManager::class.java)
-    imm?.hideSoftInputFromWindow(view?.windowToken, 0)
+    val imm = ContextCompat.getSystemService(requireContext(), InputMethodManager::class.java)
+    imm?.hideSoftInputFromWindow(requireView().windowToken, 0)
 }
 
 fun String.onToastShow(context: Context) {

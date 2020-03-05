@@ -1,7 +1,7 @@
 package livroandroid.com.consulta.di
 
-import livroandroid.com.consulta.network.RetroFitConfig
 import livroandroid.com.consulta.network.IService
+import livroandroid.com.consulta.network.RetroFitConfig
 import livroandroid.com.consulta.repository.AddressRepository
 import livroandroid.com.consulta.repository.IRepositoryAddress
 import livroandroid.com.consulta.viewmodel.AddressViewModel

@@ -7,7 +7,7 @@ A API utilizada foi a ViaCEP que se encontra no link: https://viacep.com.br/
 
 No desenvolvimento do projeto foram utilizadas as tecnologias descritas abaixo:
 
-- Linguagem de programação
+- Linguagem de Programação
   - 
   - Kotlin
 
@@ -20,13 +20,13 @@ No desenvolvimento do projeto foram utilizadas as tecnologias descritas abaixo:
   - Lifecycle - documentação: https://developer.android.com/topic/libraries/architecture/lifecycle
   - Coroutines - documentação: https://developer.android.com/topic/libraries/architecture/coroutines
  
-- Bibliotecas externas
+- Bibliotecas Externas
   - 
   - Retrofit - é utilizado fazer requisições de serviços Web - documentação: https://square.github.io/retrofit/
   - Gson - é utilizado para fazer conversão de objetos em sua representação JSON - documentação: https://github.com/google/gson
   - Koin - é utilizado para fazer injeção de depedência - documentação: https://insert-koin.io/
     
-- Bibliotecas internas
+- Bibliotecas Internas
   -
   - RecyclerView - é utilizado para criar listas de informações, objetos, imagens etc... - documentação: https://developer.android.com/guide/topics/ui/layout/recyclerview
   - Material Design - é a orientação de código e projeto oficial do Google - documentação: https://material.io/
